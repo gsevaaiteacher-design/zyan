@@ -1,0 +1,162 @@
+{
+  "name": "ZYMORE - Digital Marketplace",
+  "short_name": "ZYMORE",
+  "description": "Ultimate digital marketplace for creators and buyers",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "categories": ["shopping", "business", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "id": "zymore-app",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "splash_pages": [
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    },
+    {
+      "src": "/assets/images/splash.png",
+      "media": "(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "description": "Go to homepage",
+      "url": "/home",
+      "icons": [
+        {
+          "src": "/assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Explore",
+      "short_name": "Explore",
+      "description": "Explore products",
+      "url": "/explore",
+      "icons": [
+        {
+          "src": "/assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Upload",
+      "short_name": "Upload",
+      "description": "Upload a product",
+      "url": "/upload",
+      "icons": [
+        {
+          "src": "/assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "short_name": "Profile",
+      "description": "View your profile",
+      "url": "/profile",
+      "icons": [
+        {
+          "src": "/assets/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://zymore.app"
+    }
+  ],
+  "prefer_related_applications": false,
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui"
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "note_taking": {
+    "new_note_url": "/notes/new"
+  },
+  "screen_orientation": {
+    "lock": false
+  },
+  "serviceworker": {
+    "src": "/sw.js",
+    "scope": "/",
+    "use_cache": false,
+    "update_via_cache": "none"
+  }
+}

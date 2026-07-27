@@ -1,0 +1,2674 @@
+/* ============================================================
+   FILE: dark-mode.css (v3.0 - PRODUCTION)
+   PURPOSE: Complete dark theme for ZYMORE Hybrid Platform
+   DEPENDENCY: style.css
+   USED BY: index.html
+   SUPPORTS: System preference + Manual toggle + All components
+   ============================================================ */
+
+/* ============================================================
+   🌙 DARK MODE CSS VARIABLES - COMPLETE DEFINITIONS
+   Applied when dark-mode class is present on body
+   ============================================================ */
+
+.dark-mode {
+    /* --- Primary Colors --- */
+    --color-primary: #8b84ff;
+    --color-primary-hover: #7a73f0;
+    --color-primary-light: rgba(108, 99, 255, 0.15);
+    --color-primary-dark: #5a52d5;
+    --color-primary-gradient: linear-gradient(135deg, #8b84ff, #6c63ff);
+    
+    /* --- Secondary Colors --- */
+    --color-secondary: #4a90d9;
+    --color-secondary-hover: #3a7fc9;
+    --color-secondary-light: rgba(74, 144, 217, 0.15);
+    
+    /* --- Success Colors --- */
+    --color-success: #52c78a;
+    --color-success-hover: #42b77a;
+    --color-success-bg: rgba(82, 199, 138, 0.15);
+    --color-success-border: #2a5a3a;
+    --color-success-text: #7ad4a0;
+    
+    /* --- Danger Colors --- */
+    --color-danger: #ff6b6b;
+    --color-danger-hover: #ef5b5b;
+    --color-danger-bg: rgba(255, 107, 107, 0.15);
+    --color-danger-border: #5a2a2a;
+    --color-danger-text: #ff8a8a;
+    
+    /* --- Warning Colors --- */
+    --color-warning: #ffb347;
+    --color-warning-hover: #efa337;
+    --color-warning-bg: rgba(255, 179, 71, 0.15);
+    --color-warning-border: #5a4a2a;
+    --color-warning-text: #ffc46a;
+    
+    /* --- Info Colors --- */
+    --color-info: #5ba3e6;
+    --color-info-hover: #4b93d6;
+    --color-info-bg: rgba(91, 163, 230, 0.15);
+    --color-info-border: #2a4a5a;
+    --color-info-text: #7db8ea;
+    
+    /* --- Background Colors --- */
+    --color-bg-primary: #0a0a0a;
+    --color-bg-secondary: #121212;
+    --color-bg-tertiary: #1a1a1a;
+    --color-bg-card: #1e1e1e;
+    --color-bg-card-hover: #282828;
+    --color-bg-card-active: #2a2a2a;
+    --color-bg-input: #2a2a2a;
+    --color-bg-input-hover: #333333;
+    --color-bg-input-focus: #383838;
+    --color-bg-modal: #1a1a1a;
+    --color-bg-dropdown: #242424;
+    --color-bg-tooltip: #333333;
+    --color-bg-nav: #0d0d0d;
+    --color-bg-header: #0a0a0a;
+    --color-bg-footer: #0d0d0d;
+    --color-bg-sidebar: #121212;
+    --color-bg-overlay: rgba(0, 0, 0, 0.85);
+    --color-bg-skeleton: #2a2a2a;
+    --color-bg-skeleton-shine: #3a3a3a;
+    
+    /* --- Text Colors --- */
+    --color-text-primary: #f0f0f0;
+    --color-text-secondary: #b0b0b0;
+    --color-text-tertiary: #808080;
+    --color-text-inverse: #0a0a0a;
+    --color-text-link: #8b84ff;
+    --color-text-link-hover: #a99cff;
+    --color-text-heading: #ffffff;
+    --color-text-muted: #6b6b6b;
+    --color-text-placeholder: #555555;
+    --color-text-disabled: #444444;
+    --color-text-on-primary: #ffffff;
+    --color-text-on-success: #ffffff;
+    --color-text-on-danger: #ffffff;
+    --color-text-on-warning: #1a1a1a;
+    --color-text-on-info: #ffffff;
+    
+    /* --- Border Colors --- */
+    --color-border: #2a2a2a;
+    --color-border-light: #3a3a3a;
+    --color-border-dark: #1a1a1a;
+    --color-border-focus: #8b84ff;
+    --color-border-hover: #4a4a4a;
+    --color-border-active: #5a5a5a;
+    
+    /* --- Shadow Colors --- */
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.8);
+    --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.9);
+    --shadow-2xl: 0 20px 64px rgba(0, 0, 0, 0.95);
+    --shadow-3xl: 0 30px 80px rgba(0, 0, 0, 1);
+    
+    /* --- Scrollbar --- */
+    --scrollbar-track: #1a1a1a;
+    --scrollbar-thumb: #3a3a3a;
+    --scrollbar-thumb-hover: #5a5a5a;
+    
+    /* --- Selection --- */
+    --selection-bg: #8b84ff;
+    --selection-color: #ffffff;
+    
+    /* --- Social Colors --- */
+    --color-facebook: #1877f2;
+    --color-twitter: #1da1f2;
+    --color-instagram: #e4405f;
+    --color-youtube: #ff0000;
+    --color-whatsapp: #25d366;
+    --color-telegram: #0088cc;
+    
+    /* --- Social Dark --- */
+    --color-facebook-dark: #0d47a1;
+    --color-twitter-dark: #0d8bca;
+    --color-instagram-dark: #b32a44;
+    --color-youtube-dark: #cc0000;
+    --color-whatsapp-dark: #1a9e4a;
+    --color-telegram-dark: #006699;
+}
+
+/* ============================================================
+   🌙 SYSTEM PREFERENCE DARK MODE
+   Auto-detected via prefers-color-scheme
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) {
+        --color-primary: #8b84ff;
+        --color-primary-hover: #7a73f0;
+        --color-primary-light: rgba(108, 99, 255, 0.15);
+        --color-primary-dark: #5a52d5;
+        --color-primary-gradient: linear-gradient(135deg, #8b84ff, #6c63ff);
+        
+        --color-secondary: #4a90d9;
+        --color-secondary-hover: #3a7fc9;
+        --color-secondary-light: rgba(74, 144, 217, 0.15);
+        
+        --color-success: #52c78a;
+        --color-success-hover: #42b77a;
+        --color-success-bg: rgba(82, 199, 138, 0.15);
+        --color-success-border: #2a5a3a;
+        --color-success-text: #7ad4a0;
+        
+        --color-danger: #ff6b6b;
+        --color-danger-hover: #ef5b5b;
+        --color-danger-bg: rgba(255, 107, 107, 0.15);
+        --color-danger-border: #5a2a2a;
+        --color-danger-text: #ff8a8a;
+        
+        --color-warning: #ffb347;
+        --color-warning-hover: #efa337;
+        --color-warning-bg: rgba(255, 179, 71, 0.15);
+        --color-warning-border: #5a4a2a;
+        --color-warning-text: #ffc46a;
+        
+        --color-info: #5ba3e6;
+        --color-info-hover: #4b93d6;
+        --color-info-bg: rgba(91, 163, 230, 0.15);
+        --color-info-border: #2a4a5a;
+        --color-info-text: #7db8ea;
+        
+        --color-bg-primary: #0a0a0a;
+        --color-bg-secondary: #121212;
+        --color-bg-tertiary: #1a1a1a;
+        --color-bg-card: #1e1e1e;
+        --color-bg-card-hover: #282828;
+        --color-bg-card-active: #2a2a2a;
+        --color-bg-input: #2a2a2a;
+        --color-bg-input-hover: #333333;
+        --color-bg-input-focus: #383838;
+        --color-bg-modal: #1a1a1a;
+        --color-bg-dropdown: #242424;
+        --color-bg-tooltip: #333333;
+        --color-bg-nav: #0d0d0d;
+        --color-bg-header: #0a0a0a;
+        --color-bg-footer: #0d0d0d;
+        --color-bg-sidebar: #121212;
+        --color-bg-overlay: rgba(0, 0, 0, 0.85);
+        --color-bg-skeleton: #2a2a2a;
+        --color-bg-skeleton-shine: #3a3a3a;
+        
+        --color-text-primary: #f0f0f0;
+        --color-text-secondary: #b0b0b0;
+        --color-text-tertiary: #808080;
+        --color-text-inverse: #0a0a0a;
+        --color-text-link: #8b84ff;
+        --color-text-link-hover: #a99cff;
+        --color-text-heading: #ffffff;
+        --color-text-muted: #6b6b6b;
+        --color-text-placeholder: #555555;
+        --color-text-disabled: #444444;
+        --color-text-on-primary: #ffffff;
+        --color-text-on-success: #ffffff;
+        --color-text-on-danger: #ffffff;
+        --color-text-on-warning: #1a1a1a;
+        --color-text-on-info: #ffffff;
+        
+        --color-border: #2a2a2a;
+        --color-border-light: #3a3a3a;
+        --color-border-dark: #1a1a1a;
+        --color-border-focus: #8b84ff;
+        --color-border-hover: #4a4a4a;
+        --color-border-active: #5a5a5a;
+        
+        --shadow-color: rgba(0, 0, 0, 0.6);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.8);
+        --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.9);
+        --shadow-2xl: 0 20px 64px rgba(0, 0, 0, 0.95);
+        --shadow-3xl: 0 30px 80px rgba(0, 0, 0, 1);
+        
+        --scrollbar-track: #1a1a1a;
+        --scrollbar-thumb: #3a3a3a;
+        --scrollbar-thumb-hover: #5a5a5a;
+        
+        --selection-bg: #8b84ff;
+        --selection-color: #ffffff;
+        
+        --color-facebook: #1877f2;
+        --color-twitter: #1da1f2;
+        --color-instagram: #e4405f;
+        --color-youtube: #ff0000;
+        --color-whatsapp: #25d366;
+        --color-telegram: #0088cc;
+        
+        --color-facebook-dark: #0d47a1;
+        --color-twitter-dark: #0d8bca;
+        --color-instagram-dark: #b32a44;
+        --color-youtube-dark: #cc0000;
+        --color-whatsapp-dark: #1a9e4a;
+        --color-telegram-dark: #006699;
+    }
+}
+
+/* ============================================================
+   🌙 DARK MODE - BODY & BASE STYLES
+   ============================================================ */
+
+.dark-mode,
+body.dark-mode {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) {
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+    }
+}
+
+/* ============================================================
+   📝 DARK MODE - TYPOGRAPHY
+   ============================================================ */
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode .h1,
+.dark-mode .h2,
+.dark-mode .h3,
+.dark-mode .h4,
+.dark-mode .h5,
+.dark-mode .h6 {
+    color: var(--color-text-heading);
+}
+
+.dark-mode p,
+.dark-mode li,
+.dark-mode span,
+.dark-mode .text-body {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .text-primary { color: var(--color-primary) !important; }
+.dark-mode .text-secondary { color: var(--color-text-secondary) !important; }
+.dark-mode .text-muted { color: var(--color-text-muted) !important; }
+.dark-mode .text-tertiary { color: var(--color-text-tertiary) !important; }
+.dark-mode .text-success { color: var(--color-success) !important; }
+.dark-mode .text-danger { color: var(--color-danger) !important; }
+.dark-mode .text-warning { color: var(--color-warning) !important; }
+.dark-mode .text-info { color: var(--color-info) !important; }
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) h1,
+    body:not(.light-mode) h2,
+    body:not(.light-mode) h3,
+    body:not(.light-mode) h4,
+    body:not(.light-mode) h5,
+    body:not(.light-mode) h6,
+    body:not(.light-mode) .h1,
+    body:not(.light-mode) .h2,
+    body:not(.light-mode) .h3,
+    body:not(.light-mode) .h4,
+    body:not(.light-mode) .h5,
+    body:not(.light-mode) .h6 {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) p,
+    body:not(.light-mode) li,
+    body:not(.light-mode) span,
+    body:not(.light-mode) .text-body {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .text-primary { color: var(--color-primary) !important; }
+    body:not(.light-mode) .text-secondary { color: var(--color-text-secondary) !important; }
+    body:not(.light-mode) .text-muted { color: var(--color-text-muted) !important; }
+    body:not(.light-mode) .text-tertiary { color: var(--color-text-tertiary) !important; }
+    body:not(.light-mode) .text-success { color: var(--color-success) !important; }
+    body:not(.light-mode) .text-danger { color: var(--color-danger) !important; }
+    body:not(.light-mode) .text-warning { color: var(--color-warning) !important; }
+    body:not(.light-mode) .text-info { color: var(--color-info) !important; }
+}
+
+.dark-mode a {
+    color: var(--color-text-link);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.dark-mode a:hover {
+    color: var(--color-text-link-hover);
+    text-decoration: underline;
+}
+
+.dark-mode .link-success { color: var(--color-success) !important; }
+.dark-mode .link-danger { color: var(--color-danger) !important; }
+.dark-mode .link-warning { color: var(--color-warning) !important; }
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) a {
+        color: var(--color-text-link);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    body:not(.light-mode) a:hover {
+        color: var(--color-text-link-hover);
+        text-decoration: underline;
+    }
+    
+    body:not(.light-mode) .link-success { color: var(--color-success) !important; }
+    body:not(.light-mode) .link-danger { color: var(--color-danger) !important; }
+    body:not(.light-mode) .link-warning { color: var(--color-warning) !important; }
+}
+
+/* ============================================================
+   🎨 DARK MODE - CARDS & CONTAINERS
+   ============================================================ */
+
+.dark-mode .card,
+.dark-mode .product-card,
+.dark-mode .category-card,
+.dark-mode .post-card,
+.dark-mode .modal-content,
+.dark-mode .dropdown-menu,
+.dark-mode .notification-item,
+.dark-mode .follower-item,
+.dark-mode .history-item,
+.dark-mode .settings-item,
+.dark-mode .stat-card,
+.dark-mode .chat-container,
+.dark-mode .ai-chat-container,
+.dark-mode .comment-section {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.dark-mode .product-card:hover,
+.dark-mode .post-card:hover,
+.dark-mode .category-card:hover,
+.dark-mode .notification-item:hover,
+.dark-mode .follower-item:hover,
+.dark-mode .settings-item:hover {
+    background-color: var(--color-bg-card-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.dark-mode .product-card:active,
+.dark-mode .post-card:active {
+    background-color: var(--color-bg-card-active);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .card,
+    body:not(.light-mode) .product-card,
+    body:not(.light-mode) .category-card,
+    body:not(.light-mode) .post-card,
+    body:not(.light-mode) .modal-content,
+    body:not(.light-mode) .dropdown-menu,
+    body:not(.light-mode) .notification-item,
+    body:not(.light-mode) .follower-item,
+    body:not(.light-mode) .history-item,
+    body:not(.light-mode) .settings-item,
+    body:not(.light-mode) .stat-card,
+    body:not(.light-mode) .chat-container,
+    body:not(.light-mode) .ai-chat-container,
+    body:not(.light-mode) .comment-section {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+        box-shadow: var(--shadow-sm);
+    }
+    
+    body:not(.light-mode) .product-card:hover,
+    body:not(.light-mode) .post-card:hover,
+    body:not(.light-mode) .category-card:hover,
+    body:not(.light-mode) .notification-item:hover,
+    body:not(.light-mode) .follower-item:hover,
+    body:not(.light-mode) .settings-item:hover {
+        background-color: var(--color-bg-card-hover);
+        box-shadow: var(--shadow-md);
+    }
+    
+    body:not(.light-mode) .product-card:active,
+    body:not(.light-mode) .post-card:active {
+        background-color: var(--color-bg-card-active);
+    }
+}
+
+/* Card specific elements */
+.dark-mode .card-header,
+.dark-mode .card-footer {
+    background-color: var(--color-bg-tertiary);
+    border-color: var(--color-border);
+}
+
+.dark-mode .card-title,
+.dark-mode .product-card .card-title,
+.dark-mode .post-card .post-user-name {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .card-text,
+.dark-mode .product-card .card-description {
+    color: var(--color-text-secondary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .card-header,
+    body:not(.light-mode) .card-footer {
+        background-color: var(--color-bg-tertiary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .card-title,
+    body:not(.light-mode) .product-card .card-title,
+    body:not(.light-mode) .post-card .post-user-name {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .card-text,
+    body:not(.light-mode) .product-card .card-description {
+        color: var(--color-text-secondary);
+    }
+}
+
+/* ============================================================
+   🧩 DARK MODE - BUTTONS
+   ============================================================ */
+
+.dark-mode .btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+    border-color: var(--color-primary);
+}
+
+.dark-mode .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+}
+
+.dark-mode .btn-primary:active {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+.dark-mode .btn-secondary {
+    background-color: var(--color-bg-card);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.dark-mode .btn-secondary:hover {
+    background-color: var(--color-bg-card-hover);
+    border-color: var(--color-border-hover);
+}
+
+.dark-mode .btn-success {
+    background-color: var(--color-success);
+    color: var(--color-text-on-success);
+    border-color: var(--color-success);
+}
+
+.dark-mode .btn-success:hover {
+    background-color: var(--color-success-hover);
+    border-color: var(--color-success-hover);
+    box-shadow: 0 0 20px rgba(82, 199, 138, 0.3);
+}
+
+.dark-mode .btn-danger {
+    background-color: var(--color-danger);
+    color: var(--color-text-on-danger);
+    border-color: var(--color-danger);
+}
+
+.dark-mode .btn-danger:hover {
+    background-color: var(--color-danger-hover);
+    border-color: var(--color-danger-hover);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.dark-mode .btn-warning {
+    background-color: var(--color-warning);
+    color: var(--color-text-on-warning);
+    border-color: var(--color-warning);
+}
+
+.dark-mode .btn-warning:hover {
+    background-color: var(--color-warning-hover);
+    border-color: var(--color-warning-hover);
+}
+
+.dark-mode .btn-info {
+    background-color: var(--color-info);
+    color: var(--color-text-on-info);
+    border-color: var(--color-info);
+}
+
+.dark-mode .btn-info:hover {
+    background-color: var(--color-info-hover);
+    border-color: var(--color-info-hover);
+}
+
+.dark-mode .btn-outline-primary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: transparent;
+}
+
+.dark-mode .btn-outline-primary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+    border-color: var(--color-primary);
+}
+
+.dark-mode .btn-outline-secondary {
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+    background: transparent;
+}
+
+.dark-mode .btn-outline-secondary:hover {
+    background-color: var(--color-bg-card-hover);
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+}
+
+.dark-mode .btn-outline-success {
+    color: var(--color-success);
+    border-color: var(--color-success);
+    background: transparent;
+}
+
+.dark-mode .btn-outline-success:hover {
+    background-color: var(--color-success);
+    color: var(--color-text-on-success);
+}
+
+.dark-mode .btn-outline-danger {
+    color: var(--color-danger);
+    border-color: var(--color-danger);
+    background: transparent;
+}
+
+.dark-mode .btn-outline-danger:hover {
+    background-color: var(--color-danger);
+    color: var(--color-text-on-danger);
+}
+
+.dark-mode .btn-ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: none;
+}
+
+.dark-mode .btn-ghost:hover {
+    background: var(--color-bg-card-hover);
+    color: var(--color-text-primary);
+}
+
+.dark-mode .btn-link {
+    color: var(--color-text-link);
+    background: transparent;
+    border: none;
+}
+
+.dark-mode .btn-link:hover {
+    color: var(--color-text-link-hover);
+    text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .btn-primary {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+        border-color: var(--color-primary);
+    }
+    
+    body:not(.light-mode) .btn-primary:hover {
+        background-color: var(--color-primary-hover);
+        border-color: var(--color-primary-hover);
+        box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+    }
+    
+    body:not(.light-mode) .btn-secondary {
+        background-color: var(--color-bg-card);
+        color: var(--color-text-primary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .btn-secondary:hover {
+        background-color: var(--color-bg-card-hover);
+        border-color: var(--color-border-hover);
+    }
+    
+    body:not(.light-mode) .btn-success {
+        background-color: var(--color-success);
+        color: var(--color-text-on-success);
+        border-color: var(--color-success);
+    }
+    
+    body:not(.light-mode) .btn-success:hover {
+        background-color: var(--color-success-hover);
+        border-color: var(--color-success-hover);
+        box-shadow: 0 0 20px rgba(82, 199, 138, 0.3);
+    }
+    
+    body:not(.light-mode) .btn-danger {
+        background-color: var(--color-danger);
+        color: var(--color-text-on-danger);
+        border-color: var(--color-danger);
+    }
+    
+    body:not(.light-mode) .btn-danger:hover {
+        background-color: var(--color-danger-hover);
+        border-color: var(--color-danger-hover);
+        box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+    }
+    
+    body:not(.light-mode) .btn-outline-primary {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+        background: transparent;
+    }
+    
+    body:not(.light-mode) .btn-outline-primary:hover {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+}
+
+/* ============================================================
+   📝 DARK MODE - FORMS
+   ============================================================ */
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select,
+.dark-mode .form-control {
+    background-color: var(--color-bg-input);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.6rem 1rem;
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.dark-mode input:hover,
+.dark-mode textarea:hover,
+.dark-mode select:hover,
+.dark-mode .form-control:hover {
+    background-color: var(--color-bg-input-hover);
+    border-color: var(--color-border-hover);
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus,
+.dark-mode .form-control:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+    background-color: var(--color-bg-input-focus);
+    outline: none;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+    color: var(--color-text-placeholder);
+}
+
+.dark-mode input:disabled,
+.dark-mode textarea:disabled,
+.dark-mode select:disabled,
+.dark-mode .form-control:disabled {
+    color: var(--color-text-disabled);
+    background-color: var(--color-bg-tertiary);
+    border-color: var(--color-border-dark);
+    cursor: not-allowed;
+}
+
+.dark-mode input:read-only,
+.dark-mode textarea:read-only {
+    background-color: var(--color-bg-tertiary);
+    border-color: var(--color-border-dark);
+}
+
+.dark-mode select option {
+    background-color: var(--color-bg-dropdown);
+    color: var(--color-text-primary);
+}
+
+.dark-mode select option:hover,
+.dark-mode select option:checked {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.dark-mode label,
+.dark-mode .form-label {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.dark-mode .form-group .form-hint {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.dark-mode .form-group .form-error {
+    color: var(--color-danger);
+    font-size: var(--font-size-sm);
+}
+
+.dark-mode .form-group .form-success {
+    color: var(--color-success);
+    font-size: var(--font-size-sm);
+}
+
+.dark-mode .form-control.is-valid {
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 3px var(--color-success-bg);
+}
+
+.dark-mode .form-control.is-invalid {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 3px var(--color-danger-bg);
+}
+
+.dark-mode .input-group-text {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) input,
+    body:not(.light-mode) textarea,
+    body:not(.light-mode) select,
+    body:not(.light-mode) .form-control {
+        background-color: var(--color-bg-input);
+        color: var(--color-text-primary);
+        border-color: var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 0.6rem 1rem;
+        font-size: var(--font-size-base);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    
+    body:not(.light-mode) input:hover,
+    body:not(.light-mode) textarea:hover,
+    body:not(.light-mode) select:hover,
+    body:not(.light-mode) .form-control:hover {
+        background-color: var(--color-bg-input-hover);
+        border-color: var(--color-border-hover);
+    }
+    
+    body:not(.light-mode) input:focus,
+    body:not(.light-mode) textarea:focus,
+    body:not(.light-mode) select:focus,
+    body:not(.light-mode) .form-control:focus {
+        border-color: var(--color-border-focus);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+        background-color: var(--color-bg-input-focus);
+        outline: none;
+    }
+    
+    body:not(.light-mode) input::placeholder,
+    body:not(.light-mode) textarea::placeholder {
+        color: var(--color-text-placeholder);
+    }
+    
+    body:not(.light-mode) label,
+    body:not(.light-mode) .form-label {
+        color: var(--color-text-secondary);
+    }
+}
+
+/* ============================================================
+   🧭 DARK MODE - NAVIGATION
+   ============================================================ */
+
+.dark-mode .bottom-nav {
+    background-color: var(--color-bg-nav);
+    border-top-color: var(--color-border);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .bottom-nav .nav-item {
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease;
+}
+
+.dark-mode .bottom-nav .nav-item:hover {
+    color: var(--color-text-primary);
+}
+
+.dark-mode .bottom-nav .nav-item.active {
+    color: var(--color-primary);
+}
+
+.dark-mode .bottom-nav .nav-item.active .nav-icon {
+    color: var(--color-primary);
+}
+
+.dark-mode .bottom-nav .nav-badge {
+    background-color: var(--color-danger);
+    color: var(--color-text-on-danger);
+}
+
+.dark-mode .header-nav {
+    background-color: var(--color-bg-header);
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .header-nav .logo-text {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .header-nav .logo-icon {
+    color: var(--color-primary);
+}
+
+.dark-mode .header-nav .header-btn {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .header-nav .header-btn:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-card-hover);
+}
+
+.dark-mode .sidebar {
+    background-color: var(--color-bg-sidebar);
+    border-right-color: var(--color-border);
+}
+
+.dark-mode .sidebar .sidebar-item {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .sidebar .sidebar-item:hover {
+    background-color: var(--color-bg-card-hover);
+    color: var(--color-text-primary);
+}
+
+.dark-mode .sidebar .sidebar-item.active {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.dark-mode .sidebar .sidebar-item .sidebar-icon {
+    color: var(--color-text-tertiary);
+}
+
+.dark-mode .sidebar .sidebar-item.active .sidebar-icon {
+    color: var(--color-primary);
+}
+
+.dark-mode .sidebar .sidebar-divider {
+    background-color: var(--color-border);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .bottom-nav {
+        background-color: var(--color-bg-nav);
+        border-top-color: var(--color-border);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    body:not(.light-mode) .bottom-nav .nav-item {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .bottom-nav .nav-item:hover {
+        color: var(--color-text-primary);
+    }
+    
+    body:not(.light-mode) .bottom-nav .nav-item.active {
+        color: var(--color-primary);
+    }
+    
+    body:not(.light-mode) .header-nav {
+        background-color: var(--color-bg-header);
+        border-bottom-color: var(--color-border);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    body:not(.light-mode) .header-nav .logo-text {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .sidebar {
+        background-color: var(--color-bg-sidebar);
+        border-right-color: var(--color-border);
+    }
+}
+
+/* ============================================================
+   📊 DARK MODE - TABLES
+   ============================================================ */
+
+.dark-mode table {
+    border-color: var(--color-border);
+}
+
+.dark-mode table th {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-heading);
+    border-color: var(--color-border);
+    font-weight: 600;
+}
+
+.dark-mode table td {
+    border-color: var(--color-border);
+    color: var(--color-text-secondary);
+}
+
+.dark-mode table tr:hover td {
+    background-color: var(--color-bg-card-hover);
+}
+
+.dark-mode table tr:nth-child(even) td {
+    background-color: var(--color-bg-tertiary);
+}
+
+.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--color-bg-tertiary);
+}
+
+.dark-mode .table-hover tbody tr:hover {
+    background-color: var(--color-bg-card-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) table {
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) table th {
+        background-color: var(--color-bg-tertiary);
+        color: var(--color-text-heading);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) table td {
+        border-color: var(--color-border);
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) table tr:hover td {
+        background-color: var(--color-bg-card-hover);
+    }
+    
+    body:not(.light-mode) table tr:nth-child(even) td {
+        background-color: var(--color-bg-tertiary);
+    }
+}
+
+/* ============================================================
+   📦 DARK MODE - MODAL
+   ============================================================ */
+
+.dark-mode .modal-overlay {
+    background-color: var(--color-bg-overlay);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.dark-mode .modal-content {
+    background-color: var(--color-bg-modal);
+    border-color: var(--color-border);
+    border-radius: var(--radius-xl);
+}
+
+.dark-mode .modal-title {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .modal-header {
+    border-bottom-color: var(--color-border);
+}
+
+.dark-mode .modal-footer {
+    border-top-color: var(--color-border);
+}
+
+.dark-mode .modal-close {
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.dark-mode .modal-close:hover {
+    color: var(--color-text-primary);
+    transform: rotate(90deg);
+}
+
+.dark-mode .modal-body {
+    color: var(--color-text-secondary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .modal-overlay {
+        background-color: var(--color-bg-overlay);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    body:not(.light-mode) .modal-content {
+        background-color: var(--color-bg-modal);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .modal-title {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .modal-header {
+        border-bottom-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .modal-footer {
+        border-top-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .modal-close {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .modal-close:hover {
+        color: var(--color-text-primary);
+    }
+}
+
+/* ============================================================
+   🔔 DARK MODE - TOAST
+   ============================================================ */
+
+.dark-mode .toast {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.dark-mode .toast-success {
+    border-left-color: var(--color-success);
+    border-left-width: 4px;
+}
+
+.dark-mode .toast-error {
+    border-left-color: var(--color-danger);
+    border-left-width: 4px;
+}
+
+.dark-mode .toast-warning {
+    border-left-color: var(--color-warning);
+    border-left-width: 4px;
+}
+
+.dark-mode .toast-info {
+    border-left-color: var(--color-info);
+    border-left-width: 4px;
+}
+
+.dark-mode .toast .toast-title {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .toast .toast-body {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .toast .toast-close {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .toast .toast-close:hover {
+    color: var(--color-text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .toast {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+        color: var(--color-text-primary);
+    }
+    
+    body:not(.light-mode) .toast-success {
+        border-left-color: var(--color-success);
+    }
+    
+    body:not(.light-mode) .toast-error {
+        border-left-color: var(--color-danger);
+    }
+    
+    body:not(.light-mode) .toast-warning {
+        border-left-color: var(--color-warning);
+    }
+    
+    body:not(.light-mode) .toast-info {
+        border-left-color: var(--color-info);
+    }
+}
+
+/* ============================================================
+   💫 DARK MODE - LOADING & SPINNER
+   ============================================================ */
+
+.dark-mode .loading-spinner {
+    border-color: var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: var(--radius-full);
+}
+
+.dark-mode .loading-overlay {
+    background-color: var(--color-bg-overlay);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.dark-mode .loading-text {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--color-bg-skeleton) 25%,
+        var(--color-bg-skeleton-shine) 50%,
+        var(--color-bg-skeleton) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading-dark 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-loading-dark {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .loading-spinner {
+        border-color: var(--color-border);
+        border-top-color: var(--color-primary);
+    }
+    
+    body:not(.light-mode) .loading-overlay {
+        background-color: var(--color-bg-overlay);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+    
+    body:not(.light-mode) .skeleton {
+        background: linear-gradient(
+            90deg,
+            var(--color-bg-skeleton) 25%,
+            var(--color-bg-skeleton-shine) 50%,
+            var(--color-bg-skeleton) 75%
+        );
+        background-size: 200% 100%;
+        animation: skeleton-loading-dark 1.5s ease-in-out infinite;
+    }
+}
+
+/* ============================================================
+   ⭐ DARK MODE - RATING STARS
+   ============================================================ */
+
+.dark-mode .star-filled {
+    color: #ffd700;
+}
+
+.dark-mode .star-empty {
+    color: var(--color-border);
+}
+
+.dark-mode .star-half {
+    color: #ffd700;
+}
+
+.dark-mode .rating-text {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .rating-count {
+    color: var(--color-text-tertiary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .star-filled {
+        color: #ffd700;
+    }
+    
+    body:not(.light-mode) .star-empty {
+        color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .star-half {
+        color: #ffd700;
+    }
+    
+    body:not(.light-mode) .rating-text {
+        color: var(--color-text-muted);
+    }
+}
+
+/* ============================================================
+   🖼️ DARK MODE - IMAGE SLIDER
+   ============================================================ */
+
+.dark-mode .slider-dot {
+    background-color: var(--color-border);
+    border-radius: var(--radius-full);
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode .slider-dot.active {
+    background-color: var(--color-primary);
+}
+
+.dark-mode .slider-dot:hover {
+    background-color: var(--color-border-hover);
+}
+
+.dark-mode .slider-arrow {
+    background-color: rgba(30, 30, 30, 0.8);
+    color: var(--color-text-primary);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.dark-mode .slider-arrow:hover {
+    background-color: rgba(40, 40, 40, 0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .slider-dot {
+        background-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .slider-dot.active {
+        background-color: var(--color-primary);
+    }
+    
+    body:not(.light-mode) .slider-arrow {
+        background-color: rgba(30, 30, 30, 0.8);
+        color: var(--color-text-primary);
+    }
+    
+    body:not(.light-mode) .slider-arrow:hover {
+        background-color: rgba(40, 40, 40, 0.9);
+    }
+}
+
+/* ============================================================
+   📱 DARK MODE - SCROLLBAR
+   ============================================================ */
+
+.dark-mode ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: var(--radius-full);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    body:not(.light-mode) ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+        border-radius: var(--radius-full);
+    }
+    
+    body:not(.light-mode) ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: var(--radius-full);
+    }
+    
+    body:not(.light-mode) ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover);
+    }
+}
+
+/* Firefox scrollbar */
+.dark-mode * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+}
+
+/* ============================================================
+   🎨 DARK MODE - SELECTION
+   ============================================================ */
+
+.dark-mode ::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-color);
+}
+
+.dark-mode ::-moz-selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-color);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) ::selection {
+        background-color: var(--selection-bg);
+        color: var(--selection-color);
+    }
+    
+    body:not(.light-mode) ::-moz-selection {
+        background-color: var(--selection-bg);
+        color: var(--selection-color);
+    }
+}
+
+/* ============================================================
+   📄 DARK MODE - UTILITY CLASSES
+   ============================================================ */
+
+/* Borders */
+.dark-mode .border { border-color: var(--color-border) !important; }
+.dark-mode .border-top { border-top-color: var(--color-border) !important; }
+.dark-mode .border-bottom { border-bottom-color: var(--color-border) !important; }
+.dark-mode .border-left { border-left-color: var(--color-border) !important; }
+.dark-mode .border-right { border-right-color: var(--color-border) !important; }
+.dark-mode .border-light { border-color: var(--color-border-light) !important; }
+.dark-mode .border-dark { border-color: var(--color-border-dark) !important; }
+.dark-mode .border-primary { border-color: var(--color-primary) !important; }
+.dark-mode .border-success { border-color: var(--color-success) !important; }
+.dark-mode .border-danger { border-color: var(--color-danger) !important; }
+.dark-mode .border-warning { border-color: var(--color-warning) !important; }
+.dark-mode .border-info { border-color: var(--color-info) !important; }
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .border { border-color: var(--color-border) !important; }
+    body:not(.light-mode) .border-top { border-top-color: var(--color-border) !important; }
+    body:not(.light-mode) .border-bottom { border-bottom-color: var(--color-border) !important; }
+    body:not(.light-mode) .border-left { border-left-color: var(--color-border) !important; }
+    body:not(.light-mode) .border-right { border-right-color: var(--color-border) !important; }
+    body:not(.light-mode) .border-light { border-color: var(--color-border-light) !important; }
+    body:not(.light-mode) .border-dark { border-color: var(--color-border-dark) !important; }
+    body:not(.light-mode) .border-primary { border-color: var(--color-primary) !important; }
+    body:not(.light-mode) .border-success { border-color: var(--color-success) !important; }
+    body:not(.light-mode) .border-danger { border-color: var(--color-danger) !important; }
+    body:not(.light-mode) .border-warning { border-color: var(--color-warning) !important; }
+    body:not(.light-mode) .border-info { border-color: var(--color-info) !important; }
+}
+
+/* Backgrounds */
+.dark-mode .bg-primary { background-color: var(--color-primary) !important; }
+.dark-mode .bg-secondary { background-color: var(--color-bg-secondary) !important; }
+.dark-mode .bg-card { background-color: var(--color-bg-card) !important; }
+.dark-mode .bg-tertiary { background-color: var(--color-bg-tertiary) !important; }
+.dark-mode .bg-success { background-color: var(--color-success) !important; }
+.dark-mode .bg-danger { background-color: var(--color-danger) !important; }
+.dark-mode .bg-warning { background-color: var(--color-warning) !important; }
+.dark-mode .bg-info { background-color: var(--color-info) !important; }
+.dark-mode .bg-transparent { background-color: transparent !important; }
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .bg-primary { background-color: var(--color-primary) !important; }
+    body:not(.light-mode) .bg-secondary { background-color: var(--color-bg-secondary) !important; }
+    body:not(.light-mode) .bg-card { background-color: var(--color-bg-card) !important; }
+    body:not(.light-mode) .bg-tertiary { background-color: var(--color-bg-tertiary) !important; }
+    body:not(.light-mode) .bg-success { background-color: var(--color-success) !important; }
+    body:not(.light-mode) .bg-danger { background-color: var(--color-danger) !important; }
+    body:not(.light-mode) .bg-warning { background-color: var(--color-warning) !important; }
+    body:not(.light-mode) .bg-info { background-color: var(--color-info) !important; }
+}
+
+/* Shadows */
+.dark-mode .shadow-sm { box-shadow: var(--shadow-sm) !important; }
+.dark-mode .shadow-md { box-shadow: var(--shadow-md) !important; }
+.dark-mode .shadow-lg { box-shadow: var(--shadow-lg) !important; }
+.dark-mode .shadow-xl { box-shadow: var(--shadow-xl) !important; }
+.dark-mode .shadow-2xl { box-shadow: var(--shadow-2xl) !important; }
+.dark-mode .shadow-3xl { box-shadow: var(--shadow-3xl) !important; }
+.dark-mode .shadow-none { box-shadow: none !important; }
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .shadow-sm { box-shadow: var(--shadow-sm) !important; }
+    body:not(.light-mode) .shadow-md { box-shadow: var(--shadow-md) !important; }
+    body:not(.light-mode) .shadow-lg { box-shadow: var(--shadow-lg) !important; }
+    body:not(.light-mode) .shadow-xl { box-shadow: var(--shadow-xl) !important; }
+    body:not(.light-mode) .shadow-2xl { box-shadow: var(--shadow-2xl) !important; }
+    body:not(.light-mode) .shadow-3xl { box-shadow: var(--shadow-3xl) !important; }
+}
+
+/* ============================================================
+   🔄 DARK MODE - TRANSITION
+   Smooth theme switching
+   ============================================================ */
+
+.dark-mode,
+body.dark-mode,
+body:not(.light-mode) {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.dark-mode *,
+body.dark-mode *,
+body:not(.light-mode) * {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                opacity 0.3s ease,
+                transform 0.3s ease;
+}
+
+/* ============================================================
+   📱 DARK MODE - EMPTY STATES
+   ============================================================ */
+
+.dark-mode .empty-state .empty-icon {
+    filter: brightness(0.8);
+    opacity: 0.6;
+}
+
+.dark-mode .empty-state .empty-title {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .empty-state .empty-description {
+    color: var(--color-text-muted);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .empty-state .empty-icon {
+        filter: brightness(0.8);
+        opacity: 0.6;
+    }
+    
+    body:not(.light-mode) .empty-state .empty-title {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .empty-state .empty-description {
+        color: var(--color-text-muted);
+    }
+}
+
+/* ============================================================
+   📱 DARK MODE - AD BANNER
+   ============================================================ */
+
+.dark-mode .ad-banner {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .ad-banner .ad-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+.dark-mode .ad-banner .ad-content {
+    color: var(--color-text-secondary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .ad-banner {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .ad-banner .ad-label {
+        color: var(--color-text-muted);
+    }
+}
+
+/* ============================================================
+   🔔 DARK MODE - NOTIFICATIONS
+   ============================================================ */
+
+.dark-mode .notification-item {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .notification-item:hover {
+    background-color: var(--color-bg-card-hover);
+}
+
+.dark-mode .notification-item .notification-icon {
+    color: var(--color-text-tertiary);
+}
+
+.dark-mode .notification-item .notification-title {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .notification-item .notification-body {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .notification-item .notification-time {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.dark-mode .notification-item.unread {
+    background-color: var(--color-primary-light);
+    border-left-color: var(--color-primary);
+    border-left-width: 3px;
+}
+
+.dark-mode .notification-item.unread .notification-title {
+    color: var(--color-text-heading);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .notification-item {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .notification-item:hover {
+        background-color: var(--color-bg-card-hover);
+    }
+    
+    body:not(.light-mode) .notification-item .notification-title {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .notification-item .notification-body {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .notification-item .notification-time {
+        color: var(--color-text-muted);
+    }
+    
+    body:not(.light-mode) .notification-item.unread {
+        background-color: var(--color-primary-light);
+    }
+}
+
+/* ============================================================
+   🛒 DARK MODE - CART / HISTORY
+   ============================================================ */
+
+.dark-mode .history-item {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .history-item .history-title {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .history-item .history-date {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .history-item .history-status {
+    color: var(--color-text-tertiary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .history-item {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .history-item .history-title {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .history-item .history-date {
+        color: var(--color-text-muted);
+    }
+}
+
+/* ============================================================
+   📊 DARK MODE - SELLER STATS
+   ============================================================ */
+
+.dark-mode .stat-card {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .stat-card .stat-icon {
+    color: var(--color-text-tertiary);
+}
+
+.dark-mode .stat-card .stat-value {
+    color: var(--color-text-heading);
+    font-weight: 700;
+}
+
+.dark-mode .stat-card .stat-label {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .stat-card .stat-change {
+    color: var(--color-success);
+}
+
+.dark-mode .stat-card .stat-change.negative {
+    color: var(--color-danger);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .stat-card {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .stat-card .stat-value {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .stat-card .stat-label {
+        color: var(--color-text-muted);
+    }
+}
+
+/* ============================================================
+   🏷️ DARK MODE - TAGS / BADGES
+   ============================================================ */
+
+.dark-mode .tag {
+    background-color: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 2px 10px;
+    font-size: var(--font-size-sm);
+}
+
+.dark-mode .tag:hover {
+    background-color: var(--color-bg-card-hover);
+    border-color: var(--color-border-hover);
+}
+
+.dark-mode .badge-primary {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.dark-mode .badge-secondary {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .badge-success {
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
+}
+
+.dark-mode .badge-danger {
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger-text);
+}
+
+.dark-mode .badge-warning {
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning-text);
+}
+
+.dark-mode .badge-info {
+    background-color: var(--color-info-bg);
+    color: var(--color-info-text);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .tag {
+        background-color: var(--color-bg-card);
+        color: var(--color-text-secondary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .badge-primary {
+        background-color: var(--color-primary-light);
+        color: var(--color-primary);
+    }
+    
+    body:not(.light-mode) .badge-success {
+        background-color: var(--color-success-bg);
+        color: var(--color-success-text);
+    }
+    
+    body:not(.light-mode) .badge-danger {
+        background-color: var(--color-danger-bg);
+        color: var(--color-danger-text);
+    }
+    
+    body:not(.light-mode) .badge-warning {
+        background-color: var(--color-warning-bg);
+        color: var(--color-warning-text);
+    }
+    
+    body:not(.light-mode) .badge-info {
+        background-color: var(--color-info-bg);
+        color: var(--color-info-text);
+    }
+}
+
+/* ============================================================
+   🎯 DARK MODE - TOOLTIPS
+   ============================================================ */
+
+.dark-mode .tooltip {
+    background-color: var(--color-bg-tooltip);
+    color: var(--color-text-primary);
+    border-radius: var(--radius-sm);
+    padding: 4px 12px;
+    font-size: var(--font-size-sm);
+    box-shadow: var(--shadow-md);
+}
+
+.dark-mode .tooltip .tooltip-arrow {
+    border-color: var(--color-bg-tooltip);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .tooltip {
+        background-color: var(--color-bg-tooltip);
+        color: var(--color-text-primary);
+    }
+}
+
+/* ============================================================
+   💬 DARK MODE - CHAT
+   ============================================================ */
+
+.dark-mode .chat-container {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.dark-mode .chat-header {
+    background-color: var(--color-bg-card);
+    border-bottom-color: var(--color-border);
+}
+
+.dark-mode .chat-header .chat-user-name {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .chat-header .chat-user-status {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .chat-message .message-text {
+    background-color: var(--color-bg-card);
+    color: var(--color-text-primary);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .chat-message.message-sent .message-text {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.dark-mode .chat-message .message-time {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+.dark-mode .chat-message .message-sender {
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-xs);
+}
+
+.dark-mode .chat-input {
+    background-color: var(--color-bg-card);
+    border-top-color: var(--color-border);
+}
+
+.dark-mode .chat-input input {
+    background-color: var(--color-bg-input);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.dark-mode .chat-input input:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.dark-mode .chat-input .send-btn {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.dark-mode .chat-input .send-btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.dark-mode .chat-input .attach-btn,
+.dark-mode .chat-input .emoji-btn {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .chat-input .attach-btn:hover,
+.dark-mode .chat-input .emoji-btn:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-card-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .chat-container {
+        background-color: var(--color-bg-secondary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .chat-header {
+        background-color: var(--color-bg-card);
+        border-bottom-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .chat-header .chat-user-name {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .chat-message .message-text {
+        background-color: var(--color-bg-card);
+        color: var(--color-text-primary);
+    }
+    
+    body:not(.light-mode) .chat-message.message-sent .message-text {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+    
+    body:not(.light-mode) .chat-input {
+        background-color: var(--color-bg-card);
+        border-top-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .chat-input input {
+        background-color: var(--color-bg-input);
+        color: var(--color-text-primary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .chat-input input:focus {
+        border-color: var(--color-border-focus);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+    
+    body:not(.light-mode) .chat-input .send-btn {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+}
+
+/* ============================================================
+   🤖 DARK MODE - AI CHAT
+   ============================================================ */
+
+.dark-mode .ai-chat-container {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.dark-mode .ai-chat .ai-header {
+    background-color: var(--color-bg-card);
+    border-bottom-color: var(--color-border);
+}
+
+.dark-mode .ai-chat .ai-header .ai-icon {
+    color: var(--color-primary);
+}
+
+.dark-mode .ai-chat .ai-header .ai-title {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .ai-chat .ai-header .ai-subtitle {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .ai-chat .ai-message {
+    background-color: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .ai-chat .ai-message .ai-avatar {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.dark-mode .ai-chat .ai-message.user-message {
+    background-color: var(--color-primary-light);
+    color: var(--color-text-primary);
+}
+
+.dark-mode .ai-chat .ai-question-count {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+}
+
+.dark-mode .ai-chat .ai-ad-banner {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .ai-chat .ai-ad-banner .ad-reward-btn {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.dark-mode .ai-chat .ai-ad-banner .ad-reward-btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.dark-mode .ai-chat .ai-input {
+    background-color: var(--color-bg-card);
+    border-top-color: var(--color-border);
+}
+
+.dark-mode .ai-chat .ai-input input {
+    background-color: var(--color-bg-input);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.dark-mode .ai-chat .ai-input input:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.dark-mode .ai-chat .ai-input .ai-send-btn {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.dark-mode .ai-chat .ai-input .ai-send-btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.dark-mode .ai-chat .ai-suggestion {
+    background-color: var(--color-bg-card);
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+    border-radius: var(--radius-sm);
+}
+
+.dark-mode .ai-chat .ai-suggestion:hover {
+    background-color: var(--color-bg-card-hover);
+    border-color: var(--color-border-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .ai-chat-container {
+        background-color: var(--color-bg-secondary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .ai-chat .ai-header {
+        background-color: var(--color-bg-card);
+        border-bottom-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .ai-chat .ai-message {
+        background-color: var(--color-bg-card);
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .ai-chat .ai-message.user-message {
+        background-color: var(--color-primary-light);
+        color: var(--color-text-primary);
+    }
+    
+    body:not(.light-mode) .ai-chat .ai-input {
+        background-color: var(--color-bg-card);
+        border-top-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .ai-chat .ai-input input {
+        background-color: var(--color-bg-input);
+        color: var(--color-text-primary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .ai-chat .ai-input input:focus {
+        border-color: var(--color-border-focus);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+    
+    body:not(.light-mode) .ai-chat .ai-input .ai-send-btn {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+}
+
+/* ============================================================
+   👥 DARK MODE - FOLLOWERS
+   ============================================================ */
+
+.dark-mode .follower-item {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .follower-item:hover {
+    background-color: var(--color-bg-card-hover);
+}
+
+.dark-mode .follower-item .follower-avatar {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .follower-item .follower-name {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .follower-item .follower-handle {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .follower-item .follower-bio {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .follower-item .follower-action {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+    border-radius: var(--radius-sm);
+}
+
+.dark-mode .follower-item .follower-action:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.dark-mode .follower-item .follower-action.following {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .follower-item .follower-action.following:hover {
+    background-color: var(--color-danger);
+    color: var(--color-text-on-danger);
+}
+
+.dark-mode .follower-item .follower-badge {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    border-radius: var(--radius-sm);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .follower-item {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .follower-item:hover {
+        background-color: var(--color-bg-card-hover);
+    }
+    
+    body:not(.light-mode) .follower-item .follower-name {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .follower-item .follower-handle {
+        color: var(--color-text-muted);
+    }
+    
+    body:not(.light-mode) .follower-item .follower-bio {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .follower-item .follower-action {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+    
+    body:not(.light-mode) .follower-item .follower-action.following {
+        background-color: var(--color-bg-tertiary);
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .follower-item .follower-action.following:hover {
+        background-color: var(--color-danger);
+        color: var(--color-text-on-danger);
+    }
+}
+
+/* ============================================================
+   📝 DARK MODE - COMMENTS
+   ============================================================ */
+
+.dark-mode .comment-section {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .comment-section .comment-count {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .comment-section .comment-input input {
+    background-color: var(--color-bg-input);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.dark-mode .comment-section .comment-input input:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.dark-mode .comment-section .comment-input .comment-submit {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.dark-mode .comment-section .comment-input .comment-submit:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.dark-mode .comment-item .comment-avatar {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .comment-item .comment-user-name {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .comment-item .comment-text {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .comment-item .comment-time {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .comment-item .comment-actions {
+    color: var(--color-text-tertiary);
+}
+
+.dark-mode .comment-item .comment-actions button:hover {
+    color: var(--color-primary);
+}
+
+.dark-mode .comment-item .comment-replies {
+    border-left-color: var(--color-border);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .comment-section {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .comment-section .comment-count {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .comment-section .comment-input input {
+        background-color: var(--color-bg-input);
+        color: var(--color-text-primary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .comment-section .comment-input input:focus {
+        border-color: var(--color-border-focus);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+    
+    body:not(.light-mode) .comment-section .comment-input .comment-submit {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+    
+    body:not(.light-mode) .comment-item .comment-user-name {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .comment-item .comment-text {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .comment-item .comment-time {
+        color: var(--color-text-muted);
+    }
+    
+    body:not(.light-mode) .comment-item .comment-replies {
+        border-left-color: var(--color-border);
+    }
+}
+
+/* ============================================================
+   📱 DARK MODE - STORIES
+   ============================================================ */
+
+.dark-mode .stories-bar {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.dark-mode .story-circle .story-avatar {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+}
+
+.dark-mode .story-circle .story-name {
+    color: var(--color-text-tertiary);
+}
+
+.dark-mode .story-circle .story-ring {
+    stroke: var(--color-border);
+}
+
+.dark-mode .story-circle .story-ring-active {
+    stroke: var(--color-primary);
+}
+
+.dark-mode .story-circle .story-ring-viewed {
+    stroke: var(--color-border-hover);
+}
+
+.dark-mode .story-circle .story-add {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .stories-bar {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .story-circle .story-avatar {
+        background-color: var(--color-bg-tertiary);
+        color: var(--color-text-secondary);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .story-circle .story-name {
+        color: var(--color-text-tertiary);
+    }
+    
+    body:not(.light-mode) .story-circle .story-ring {
+        stroke: var(--color-border);
+    }
+    
+    body:not(.light-mode) .story-circle .story-ring-active {
+        stroke: var(--color-primary);
+    }
+    
+    body:not(.light-mode) .story-circle .story-add {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
+}
+
+/* ============================================================
+   📱 DARK MODE - PROFILE
+   ============================================================ */
+
+.dark-mode .profile-header {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+}
+
+.dark-mode .profile-cover {
+    background-color: var(--color-bg-tertiary);
+}
+
+.dark-mode .profile-avatar {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border-color: var(--color-bg-card);
+}
+
+.dark-mode .profile-name {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .profile-username {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .profile-bio {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .profile-location {
+    color: var(--color-text-tertiary);
+}
+
+.dark-mode .profile-stats .profile-stat-value {
+    color: var(--color-text-heading);
+}
+
+.dark-mode .profile-stats .profile-stat-label {
+    color: var(--color-text-muted);
+}
+
+.dark-mode .profile-tabs .profile-tab {
+    color: var(--color-text-secondary);
+}
+
+.dark-mode .profile-tabs .profile-tab.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+.dark-mode .profile-tabs .profile-tab:hover {
+    color: var(--color-text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .profile-header {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .profile-avatar {
+        background-color: var(--color-bg-tertiary);
+        border-color: var(--color-bg-card);
+    }
+    
+    body:not(.light-mode) .profile-name {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .profile-username {
+        color: var(--color-text-muted);
+    }
+    
+    body:not(.light-mode) .profile-bio {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .profile-stats .profile-stat-value {
+        color: var(--color-text-heading);
+    }
+    
+    body:not(.light-mode) .profile-stats .profile-stat-label {
+        color: var(--color-text-muted);
+    }
+    
+    body:not(.light-mode) .profile-tabs .profile-tab {
+        color: var(--color-text-secondary);
+    }
+    
+    body:not(.light-mode) .profile-tabs .profile-tab.active {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+    }
+}
+
+/* ============================================================
+   🎯 DARK MODE - THEME TOGGLE BUTTON
+   ============================================================ */
+
+.dark-mode .theme-toggle {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+    border-radius: var(--radius-full);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dark-mode .theme-toggle:hover {
+    background-color: var(--color-bg-card-hover);
+    transform: scale(1.05);
+}
+
+.dark-mode .theme-toggle .sun-icon {
+    display: none;
+}
+
+.dark-mode .theme-toggle .moon-icon {
+    display: inline-block;
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .theme-toggle {
+        background-color: var(--color-bg-card);
+        border-color: var(--color-border);
+        color: var(--color-text-primary);
+    }
+    
+    body:not(.light-mode) .theme-toggle:hover {
+        background-color: var(--color-bg-card-hover);
+    }
+    
+    body:not(.light-mode) .theme-toggle .sun-icon {
+        display: none;
+    }
+    
+    body:not(.light-mode) .theme-toggle .moon-icon {
+        display: inline-block;
+    }
+}
+
+/* Light mode toggle (default) */
+.theme-toggle .sun-icon {
+    display: inline-block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+/* ============================================================
+   🌐 DARK MODE - SOCIAL ICONS
+   ============================================================ */
+
+.dark-mode .social-icon-facebook {
+    color: var(--color-facebook);
+}
+
+.dark-mode .social-icon-twitter {
+    color: var(--color-twitter);
+}
+
+.dark-mode .social-icon-instagram {
+    color: var(--color-instagram);
+}
+
+.dark-mode .social-icon-youtube {
+    color: var(--color-youtube);
+}
+
+.dark-mode .social-icon-whatsapp {
+    color: var(--color-whatsapp);
+}
+
+.dark-mode .social-icon-telegram {
+    color: var(--color-telegram);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) .social-icon-facebook {
+        color: var(--color-facebook);
+    }
+    
+    body:not(.light-mode) .social-icon-twitter {
+        color: var(--color-twitter);
+    }
+    
+    body:not(.light-mode) .social-icon-instagram {
+        color: var(--color-instagram);
+    }
+    
+    body:not(.light-mode) .social-icon-youtube {
+        color: var(--color-youtube);
+    }
+    
+    body:not(.light-mode) .social-icon-whatsapp {
+        color: var(--color-whatsapp);
+    }
+    
+    body:not(.light-mode) .social-icon-telegram {
+        color: var(--color-telegram);
+    }
+}
+
+/* ============================================================
+   🎬 DARK MODE - ANIMATIONS
+   ============================================================ */
+
+/* Pulse animation for dark mode */
+@keyframes pulse-dark {
+    0% { box-shadow: 0 0 0 0 var(--color-primary-light); }
+    70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+}
+
+.dark-mode .pulse-primary {
+    animation: pulse-dark 2s infinite;
+}
+
+/* Glow animation for dark mode */
+@keyframes glow-dark {
+    0% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.2); }
+    50% { box-shadow: 0 0 40px rgba(108, 99, 255, 0.4); }
+    100% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.2); }
+}
+
+.dark-mode .glow-primary {
+    animation: glow-dark 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   📱 DARK MODE - RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+
+/* Small screens */
+@media screen and (max-width: 480px) {
+    .dark-mode .bottom-nav {
+        background-color: var(--color-bg-nav);
+        border-top-color: var(--color-border);
+    }
+    
+    .dark-mode .header-nav {
+        background-color: var(--color-bg-header);
+        border-bottom-color: var(--color-border);
+    }
+    
+    .dark-mode .modal-content {
+        background-color: var(--color-bg-modal);
+        border-color: var(--color-border);
+    }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 480px) {
+    body:not(.light-mode) .bottom-nav {
+        background-color: var(--color-bg-nav);
+        border-top-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .header-nav {
+        background-color: var(--color-bg-header);
+        border-bottom-color: var(--color-border);
+    }
+    
+    body:not(.light-mode) .modal-content {
+        background-color: var(--color-bg-modal);
+        border-color: var(--color-border);
+    }
+}
+
+/* Tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .dark-mode .sidebar {
+        background-color: var(--color-bg-sidebar);
+        border-right-color: var(--color-border);
+    }
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 481px) and (max-width: 768px) {
+    body:not(.light-mode) .sidebar {
+        background-color: var(--color-bg-sidebar);
+        border-right-color: var(--color-border);
+    }
+}
+
+/* ============================================================
+   🎯 DARK MODE - PRINT OVERRIDES
+   ============================================================ */
+
+@media print {
+    .dark-mode,
+    body.dark-mode,
+    body:not(.light-mode) {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .dark-mode *,
+    body.dark-mode *,
+    body:not(.light-mode) * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        border-color: #ddd !important;
+    }
+    
+    .dark-mode .bottom-nav,
+    .dark-mode .header-nav,
+    .dark-mode .ad-banner,
+    .dark-mode .no-print {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   ✅ FILE DARK-MODE.CSS COMPLETE v3.0
+   Supports: System preference, Manual toggle, Smooth transitions
+   All components themed: Cards, Forms, Buttons, Navigation,
+   Chat, AI Chat, Comments, Stories, Profile, Settings,
+   Notifications, Followers, Modal, Toast, Tables, etc.
+   Fully Production Ready
+   ============================================================ */

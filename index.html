@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <!-- ============================================================ -->
+    <!-- META TAGS - COMPLETE -->
+    <!-- ============================================================ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#6c63ff">
+    
+    <!-- ============================================================ -->
+    <!-- SEO META TAGS - COMPLETE -->
+    <!-- ============================================================ -->
+    <title>ZYMORE - Hybrid Social Digital Marketplace</title>
+    <meta name="description" content="ZYMORE is the ultimate hybrid platform - Digital Marketplace + Social Network + AI Chat. Buy, sell, connect, and create with AI assistance.">
+    <meta name="keywords" content="digital marketplace, social network, AI chat, creators, digital products, physical products, buy and sell, ZYMORE">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="ZYMORE Team">
+    <meta name="google-site-verification" content="google-site-verification-code">
+    <link rel="canonical" href="https://zymore.app/">
+    
+    <!-- ============================================================ -->
+    <!-- OPEN GRAPH / SOCIAL META TAGS - COMPLETE -->
+    <!-- ============================================================ -->
+    <meta property="og:title" content="ZYMORE - Hybrid Social Digital Marketplace">
+    <meta property="og:description" content="Discover, buy, and sell digital & physical products. Connect with creators, chat with AI assistant, and grow your business.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zymore.app/">
+    <meta property="og:image" content="https://zymore.app/assets/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="ZYMORE">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ZYMORE - Hybrid Social Digital Marketplace">
+    <meta name="twitter:description" content="Buy, sell, connect, and create with AI assistance. The ultimate hybrid platform.">
+    <meta name="twitter:image" content="https://zymore.app/assets/images/twitter-card.jpg">
+    <meta name="twitter:site" content="@zymoreapp">
+    <meta name="twitter:creator" content="@zymoreapp">
+    
+    <!-- ============================================================ -->
+    <!-- PWA META TAGS - COMPLETE -->
+    <!-- ============================================================ -->
+    <meta name="theme-color" content="#6c63ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ZYMORE">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="ZYMORE">
+    <meta name="msapplication-TileColor" content="#6c63ff">
+    <meta name="msapplication-TileImage" content="/assets/icons/icon-144.png">
+    
+    <!-- ============================================================ -->
+    <!-- FAVICONS - COMPLETE -->
+    <!-- ============================================================ -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/images/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#6c63ff">
+    
+    <!-- ============================================================ -->
+    <!-- PWA MANIFEST -->
+    <!-- ============================================================ -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- ============================================================ -->
+    <!-- PRELOAD CRITICAL RESOURCES - COMPLETE -->
+    <!-- ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googleapis.com">
+    <link rel="preconnect" href="https://firebase.googleapis.com">
+    <link rel="preconnect" href="https://firestore.googleapis.com">
+    <link rel="preconnect" href="https://storage.googleapis.com">
+    <link rel="preconnect" href="https://www.gstatic.com">
+    
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://firebase.googleapis.com">
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/css/style.css" as="style">
+    <link rel="preload" href="/css/components.css" as="style">
+    <link rel="preload" href="/css/responsive.css" as="style">
+    
+    <!-- ============================================================ -->
+    <!-- FONTS - COMPLETE -->
+    <!-- ============================================================ -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ============================================================ -->
+    <!-- CSS STYLESHEETS - COMPLETE -->
+    <!-- ============================================================ -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/dark-mode.css">
+    
+    <!-- ============================================================ -->
+    <!-- JSON-LD STRUCTURED DATA - COMPLETE -->
+    <!-- ============================================================ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ZYMORE",
+        "description": "Hybrid Social Digital Marketplace - Buy, sell, connect, and create with AI assistance.",
+        "applicationCategory": "ShoppingApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "inLanguage": ["en", "hi", "ur", "ar"],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "ZYMORE",
+            "url": "https://zymore.app"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://zymore.app/explore?search={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ZYMORE",
+        "url": "https://zymore.app",
+        "logo": "https://zymore.app/assets/images/logo.png",
+        "sameAs": [
+            "https://twitter.com/zymoreapp",
+            "https://instagram.com/zymoreapp",
+            "https://youtube.com/zymoreapp"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "support",
+            "email": "support@zymore.app"
+        }
+    }
+    </script>
+    
+    <!-- ============================================================ -->
+    <!-- INLINE CRITICAL CSS - OPTIMIZED -->
+    <!-- ============================================================ -->
+    <style>
+        /* ============================================================
+           CRITICAL CSS - Core styles for initial render
+           ============================================================ */
+        
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --color-primary: #6c63ff;
+            --color-primary-dark: #5a52d5;
+            --color-primary-light: rgba(108, 99, 255, 0.1);
+            --color-primary-hover: #7a73f0;
+            --color-bg: #f8f9fa;
+            --color-text: #1a1a2e;
+            --color-text-secondary: #6c757d;
+            --color-border: #e9ecef;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-family-heading: 'Poppins', 'Inter', -apple-system, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: var(--font-family);
+            background: var(--color-bg);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+        body.ready {
+            opacity: 1;
+        }
+        
+        /* Loading Screen - Enhanced */
+        #app-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            z-index: 99999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #app-loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loading-logo {
+            font-family: var(--font-family-heading);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+        .loading-logo span {
+            color: var(--color-primary);
+        }
+        .loading-tagline {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        .loading-spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+        }
+        .loading-progress {
+            margin-top: 16px;
+            width: 120px;
+            height: 3px;
+            background: var(--color-border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .loading-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--color-primary);
+            border-radius: 2px;
+            animation: progress 2s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        
+        /* Dark mode loading */
+        [data-theme="dark"] #app-loading {
+            background: #0a0a0a;
+        }
+        [data-theme="dark"] .loading-logo {
+            color: #f0f0f0;
+        }
+        [data-theme="dark"] .loading-tagline {
+            color: #808080;
+        }
+        [data-theme="dark"] .loading-spinner {
+            border-color: #2a2a2a;
+            border-top-color: #8b84ff;
+        }
+        [data-theme="dark"] .loading-progress {
+            background: #2a2a2a;
+        }
+        [data-theme="dark"] .loading-progress-bar {
+            background: #8b84ff;
+        }
+        
+        /* App Root */
+        #app {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #app-content {
+            flex: 1;
+            padding-bottom: 76px;
+            min-height: calc(100vh - 76px);
+        }
+        
+        /* Utility Classes */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Bottom Navigation - Enhanced */
+        #bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            padding: 4px 0 env(safe-area-inset-bottom, 4px);
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            height: 64px;
+        }
+        [data-theme="dark"] #bottom-nav {
+            background: #121212;
+            border-top-color: #2a2a2a;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 8px;
+            text-decoration: none;
+            color: #9ca3af;
+            font-size: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            font-family: var(--font-family);
+            min-width: 48px;
+            position: relative;
+            border-radius: 8px;
+            flex: 1;
+            max-width: 80px;
+        }
+        .nav-item .nav-icon {
+            font-size: 22px;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+        .nav-item .nav-label {
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            opacity: 0.8;
+        }
+        .nav-item:hover {
+            color: #6b7280;
+        }
+        .nav-item:hover .nav-icon {
+            transform: scale(1.05);
+        }
+        .nav-item.active {
+            color: var(--color-primary);
+        }
+        .nav-item.active .nav-icon {
+            transform: scale(1.08);
+        }
+        .nav-item.active .nav-label {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        [data-theme="dark"] .nav-item {
+            color: #6b7280;
+        }
+        [data-theme="dark"] .nav-item.active {
+            color: #8b84ff;
+        }
+        [data-theme="dark"] .nav-item.active .nav-label {
+            color: #8b84ff;
+        }
+        .nav-item .nav-badge {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            background: #ef4444;
+            color: white;
+            font-size: 8px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 10px;
+            min-width: 16px;
+            text-align: center;
+            line-height: 14px;
+            border: 2px solid #ffffff;
+        }
+        [data-theme="dark"] .nav-item .nav-badge {
+            border-color: #121212;
+        }
+        .nav-item .nav-badge.hidden {
+            display: none;
+        }
+        .nav-item .nav-badge.pulse {
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        /* Touch feedback */
+        .nav-item:active {
+            transform: scale(0.92);
+        }
+        
+        /* Desktop Navigation - Show Sidebar instead */
+        @media (min-width: 769px) {
+            #bottom-nav {
+                display: none;
+            }
+            #app-content {
+                padding-bottom: 24px;
+            }
+        }
+        
+        /* Toast Container */
+        #toast-container {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            max-width: 90%;
+            width: 100%;
+            max-width: 420px;
+            pointer-events: none;
+        }
+        @media (min-width: 769px) {
+            #toast-container {
+                bottom: 30px;
+                right: 30px;
+                left: auto;
+                transform: none;
+                max-width: 380px;
+                align-items: flex-end;
+            }
+        }
+        
+        /* Modal Overlay */
+        #modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 9998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: modalFadeIn 0.3s ease;
+        }
+        #modal-overlay.active {
+            display: flex;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #modal-content {
+            background: #ffffff;
+            border-radius: 16px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px;
+            animation: modalSlideUp 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        [data-theme="dark"] #modal-content {
+            background: #1a1a1a;
+        }
+        @keyframes modalSlideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb {
+            background: #374151;
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+        
+        /* Noscript */
+        .noscript-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+            background: #f9fafb;
+        }
+        .noscript-fallback .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        .noscript-fallback h2 {
+            margin: 0;
+            color: #1a1a2e;
+            font-size: 24px;
+        }
+        .noscript-fallback p {
+            color: #6b7280;
+            margin: 8px 0 0;
+            font-size: 16px;
+            max-width: 400px;
+        }
+        [data-theme="dark"] .noscript-fallback {
+            background: #0a0a0a;
+        }
+        [data-theme="dark"] .noscript-fallback h2 {
+            color: #f0f0f0;
+        }
+        [data-theme="dark"] .noscript-fallback p {
+            color: #9ca3af;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================ -->
+    <!-- LOADING SCREEN -->
+    <!-- ============================================================ -->
+    <div id="app-loading" role="status" aria-label="Loading application">
+        <div class="loading-logo">ZYMORE</div>
+        <div class="loading-tagline">Hybrid Social Marketplace</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN APP CONTAINER -->
+    <!-- ============================================================ -->
+    <div id="app">
+        <div id="app-content" role="main"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- BOTTOM NAVIGATION - COMPLETE -->
+    <!-- ============================================================ -->
+    <nav id="bottom-nav" role="navigation" aria-label="Main navigation">
+        <button class="nav-item active" data-route="/home" aria-label="Home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" data-route="/explore" aria-label="Explore">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-label">Explore</span>
+        </button>
+        <button class="nav-item" data-route="/upload" aria-label="Upload Product">
+            <span class="nav-icon">📤</span>
+            <span class="nav-label">Upload</span>
+        </button>
+        <button class="nav-item" data-route="/social" aria-label="Social Feed">
+            <span class="nav-icon">📱</span>
+            <span class="nav-label">Social</span>
+        </button>
+        <button class="nav-item" data-route="/profile" aria-label="Profile">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Profile</span>
+        </button>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <!-- ============================================================ -->
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- ============================================================ -->
+    <!-- MODAL CONTAINER -->
+    <!-- ============================================================ -->
+    <div id="modal-overlay">
+        <div id="modal-content" role="dialog" aria-modal="true"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT - COMPLETE -->
+    <!-- ============================================================ -->
+    
+    <script>
+        // ============================================================
+        // CRITICAL JS - Runs before module load
+        // ============================================================
+        
+        (function() {
+            'use strict';
+            
+            // --- Dark Mode Detection ---
+            function detectDarkMode() {
+                try {
+                    // Check localStorage first
+                    const saved = localStorage.getItem('zymore-theme');
+                    if (saved === 'dark') {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        return true;
+                    } else if (saved === 'light') {
+                        document.documentElement.setAttribute('data-theme', 'light');
+                        return false;
+                    }
+                    
+                    // Check system preference
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        return true;
+                    }
+                } catch (e) {
+                    // Ignore
+                }
+                return false;
+            }
+            detectDarkMode();
+            
+            // --- Listen for theme changes ---
+            if (window.matchMedia) {
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                    const saved = localStorage.getItem('zymore-theme');
+                    if (!saved) {
+                        if (e.matches) {
+                            document.documentElement.setAttribute('data-theme', 'dark');
+                        } else {
+                            document.documentElement.setAttribute('data-theme', 'light');
+                        }
+                    }
+                });
+            }
+            
+            // --- Navigation Click Handler ---
+            document.addEventListener('DOMContentLoaded', function() {
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(function(item) {
+                    item.addEventListener('click', function(e) {
+                        const route = this.getAttribute('data-route');
+                        if (route) {
+                            // Update active state
+                            navItems.forEach(function(nav) {
+                                nav.classList.remove('active');
+                            });
+                            this.classList.add('active');
+                            
+                            // Dispatch navigation event
+                            const event = new CustomEvent('navigate', {
+                                detail: { route: route }
+                            });
+                            document.dispatchEvent(event);
+                        }
+                    });
+                });
+            });
+            
+            // --- Keyboard Navigation ---
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('modal-overlay');
+                    if (modal && modal.classList.contains('active')) {
+                        const closeEvent = new CustomEvent('modal-close');
+                        document.dispatchEvent(closeEvent);
+                    }
+                }
+            });
+            
+            // --- Performance Mark ---
+            if (window.performance) {
+                performance.mark('app-start');
+            }
+            
+            console.log('🚀 ZYMORE v3.0 - Hybrid Platform');
+            console.log('📱 Social + Marketplace + AI Chat + Physical Products');
+            console.log('🔒 Secure | 📱 PWA Ready | 🌐 Multi-language');
+        })();
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- MAIN APPLICATION - Module Import -->
+    <!-- ============================================================ -->
+    <script type="importmap">
+    {
+        "imports": {
+            "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+            "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+            "firebase/firestore": "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js",
+            "firebase/storage": "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js",
+            "firebase/analytics": "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js"
+        }
+    }
+    </script>
+
+    <script type="module">
+        // ============================================================
+        // MAIN APP BOOTSTRAP
+        // ============================================================
+        
+        import { App } from '/js/app.js';
+        
+        // --- Hide loading screen ---
+        function hideLoading() {
+            const loading = document.getElementById('app-loading');
+            if (loading) {
+                loading.classList.add('hidden');
+                setTimeout(function() {
+                    if (loading.parentNode) {
+                        loading.remove();
+                    }
+                }, 600);
+            }
+            document.body.classList.add('ready');
+        }
+        
+        // --- Initialize App ---
+        try {
+            const app = new App();
+            await app.init();
+            
+            // Hide loading after app is ready
+            hideLoading();
+            
+            // Expose for debugging
+            window.__app = app;
+            
+            console.log('✅ ZYMORE initialized successfully');
+            
+            // Performance mark
+            if (window.performance) {
+                performance.mark('app-ready');
+                performance.measure('app-startup', 'app-start', 'app-ready');
+            }
+            
+        } catch (error) {
+            console.error('❌ App initialization failed:', error);
+            
+            // Hide loading anyway
+            hideLoading();
+            
+            // Show error UI
+            const content = document.getElementById('app-content');
+            if (content) {
+                content.innerHTML = `
+                    <div class="fade-in" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;padding:24px;text-align:center;max-width:500px;margin:0 auto;">
+                        <div style="font-size:56px;margin-bottom:16px;">😱</div>
+                        <h2 style="margin:0;color:var(--color-text);font-size:22px;font-weight:700;">Oops! Something went wrong</h2>
+                        <p style="color:var(--color-text-secondary);margin:8px 0 20px;font-size:15px;line-height:1.6;">
+                            We couldn't load the application. Please try refreshing the page.
+                        </p>
+                        <button onclick="location.reload()" style="padding:12px 32px;background:var(--color-primary);color:white;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600;transition:transform 0.2s;font-family:var(--font-family);">
+                            🔄 Refresh Page
+                        </button>
+                        <details style="margin-top:20px;text-align:left;color:var(--color-text-secondary);font-size:12px;max-width:100%;width:100%;">
+                            <summary style="cursor:pointer;font-weight:500;">Technical Details</summary>
+                            <pre style="white-space:pre-wrap;word-break:break-word;background:var(--color-bg);padding:12px;border-radius:8px;margin-top:8px;font-size:11px;overflow:auto;max-height:200px;">${(error.stack || error.message || 'Unknown error').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+                        </details>
+                    </div>
+                `;
+            }
+        }
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- NOSCRIPT FALLBACK -->
+    <!-- ============================================================ -->
+    <noscript>
+        <div class="noscript-fallback">
+            <div class="icon">🔒</div>
+            <h2>JavaScript is Disabled</h2>
+            <p>Please enable JavaScript to use ZYMORE. This is a modern web application that requires JavaScript.</p>
+            <p style="margin-top:12px;font-size:14px;opacity:0.7;">ZYMORE - Hybrid Social Digital Marketplace</p>
+        </div>
+    </noscript>
+</body>
+</html>
