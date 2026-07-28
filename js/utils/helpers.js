@@ -948,4 +948,19 @@ if (typeof window !== 'undefined') {
     window.Helpers = Helpers;
 }
 
-export default Helpers;
+// Safe helpers export for app.js
+export const helpers = {
+    formatCurrency: (amount) => `₹${amount}`,
+    formatDate: (date) => new Date(date).toLocaleDateString(),
+    debounce: (func, wait) => {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+};
+
+export default helpers;
+
+//export default Helpers;

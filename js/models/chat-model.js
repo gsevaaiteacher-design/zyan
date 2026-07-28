@@ -1886,6 +1886,35 @@ export class Chat {
 
 export default Chat;
 
+/**
+ * Helpers to match index.js expectation for Chat
+ */
+export function createChat(data) {
+    return new Chat(data);
+}
+
+export function validateChat(data) {
+    const chat = data instanceof Chat ? data : new Chat(data);
+    return chat.validate ? chat.validate() : { isValid: true };
+}
+
+export function chatToFirestore(chat) {
+    if (chat && typeof chat.toFirestore === 'function') {
+        return chat.toFirestore();
+    }
+    return chat;
+}
+
+export function firestoreToChat(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Chat.fromFirestore === 'function') {
+        return Chat.fromFirestore(data, id);
+    }
+    return new Chat({ ...data, id });
+}
+
 // ============================================================
 // END OF FILE: chat-model.js
 // ============================================================

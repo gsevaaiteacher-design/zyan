@@ -1811,6 +1811,34 @@ export class Category {
 
 export default Category;
 
+/**
+ * Helpers to match index.js expectation for Category
+ */
+export function createCategory(data) {
+    return new Category(data);
+}
+
+export function validateCategory(data) {
+    const category = data instanceof Category ? data : new Category(data);
+    return category.validate ? category.validate() : { isValid: true };
+}
+
+export function categoryToFirestore(category) {
+    if (category && typeof category.toFirestore === 'function') {
+        return category.toFirestore();
+    }
+    return category;
+}
+
+export function firestoreToCategory(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Category.fromFirestore === 'function') {
+        return Category.fromFirestore(data, id);
+    }
+    return new Category({ ...data, id });
+}
 // ============================================================
 // END OF FILE: category-model.js
 // ============================================================

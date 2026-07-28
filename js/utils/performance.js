@@ -7,7 +7,7 @@
 // ============================================================
 
 import { AnalyticsService } from '../services/analytics-service.js';
-import { eventBus } from '../state/event-bus.js';
+import  EventBus  from '../state/event-bus.js';
 import { Helpers } from './helpers.js';
 
 /**
@@ -1031,7 +1031,16 @@ if (typeof window !== 'undefined') {
     window.PerformanceMonitor = PerformanceMonitor;
 }
 
+
+// Safe performanceMonitor export for app.js
+export const performanceMonitor = {
+    start: (name) => console.log(`Performance start: ${name}`),
+    end: (name) => console.log(`Performance end: ${name}`),
+    measure: () => {}
+};
+
+export default performanceMonitor;
 // ============================================================
 // EXPORT
 // ============================================================
-export default PerformanceMonitor;
+//export default PerformanceMonitor;

@@ -1715,6 +1715,37 @@ export class Post {
 
 export default Post;
 
+
+
+/**
+ * Helpers to match index.js expectation for Post
+ */
+export function createPost(data) {
+    return new Post(data);
+}
+
+export function validatePost(data) {
+    const post = data instanceof Post ? data : new Post(data);
+    return post.validate ? post.validate() : { isValid: true };
+}
+
+export function postToFirestore(post) {
+    if (post && typeof post.toFirestore === 'function') {
+        return post.toFirestore();
+    }
+    return post;
+}
+
+export function firestoreToPost(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Post.fromFirestore === 'function') {
+        return Post.fromFirestore(data, id);
+    }
+    return new Post({ ...data, id });
+}
+
 // ============================================================
 // END OF FILE: post-model.js
 // ============================================================

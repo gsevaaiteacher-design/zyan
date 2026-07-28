@@ -1908,6 +1908,35 @@ export class Download {
 
 export default Download;
 
+
+/**
+ * Helpers to match index.js expectation for Download
+ */
+export function createDownload(data) {
+    return new Download(data);
+}
+
+export function validateDownload(data) {
+    const download = data instanceof Download ? data : new Download(data);
+    return download.validate ? download.validate() : { isValid: true };
+}
+
+export function downloadToFirestore(download) {
+    if (download && typeof download.toFirestore === 'function') {
+        return download.toFirestore();
+    }
+    return download;
+}
+
+export function firestoreToDownload(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Download.fromFirestore === 'function') {
+        return Download.fromFirestore(data, id);
+    }
+    return new Download({ ...data, id });
+}
 // ============================================================
 // END OF FILE: download-model.js
 // ============================================================

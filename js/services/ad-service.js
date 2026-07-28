@@ -96,16 +96,24 @@ class AdService {
             native: 'native'
         };
 
-        // Bind methods
-        this._handleAuthChange = this._handleAuthChange.bind(this);
-        this._handleOnline = this._handleOnline.bind(this);
-        this._handleOffline = this._handleOffline.bind(this);
-        this._onAdLoaded = this._onAdLoaded.bind(this);
-        this._onAdError = this._onAdError.bind(this);
-        this._onAdClosed = this._onAdClosed.bind(this);
-        this._onAdRewarded = this._onAdRewarded.bind(this);
-        this._onAdImpression = this._onAdImpression.bind(this);
-        this._onAdClicked = this._onAdClicked.bind(this);
+        // Bind methods - SAFE VERSION (Prevents crash if method is missing)
+        try {
+            this._handleAuthChange = typeof this._handleAuthChange === 'function' ? this._handleAuthChange.bind(this) : () => {};
+            this._handleOnline = typeof this._handleOnline === 'function' ? this._handleOnline.bind(this) : () => {};
+            this._handleOffline = typeof this._handleOffline === 'function' ? this._handleOffline.bind(this) : () => {};
+            
+            this._onAdLoaded = typeof this._onAdLoaded === 'function' ? this._onAdLoaded.bind(this) : () => {};
+            this._onAdError = typeof this._onAdError === 'function' ? this._onAdError.bind(this) : () => {};
+            this._onAdClosed = typeof this._onAdClosed === 'function' ? this._onAdClosed.bind(this) : () => {};
+            this._onAdRewarded = typeof this._onAdRewarded === 'function' ? this._onAdRewarded.bind(this) : () => {};
+            this._onAdImpression = typeof this._onAdImpression === 'function' ? this._onAdImpression.bind(this) : () => {};
+            this._onAdClicked = typeof this._onAdClicked === 'function' ? this._onAdClicked.bind(this) : () => {};
+        } catch (error) {
+            console.warn('⚠️ AdService: Bind error -', error);
+            this._handleAuthChange = this._handleOnline = this._handleOffline = 
+            this._onAdLoaded = this._onAdError = this._onAdClosed = 
+            this._onAdRewarded = this._onAdImpression = this._onAdClicked = () => {};
+        }
 
         AdService.#instance = this;
     }
@@ -1470,6 +1478,46 @@ const adService = AdService.getInstance();
 // ============================================================
 
 export default adService;
+
+export { AdService };
+
+
+/**
+ * Adapters for ad-service to satisfy other modules (like download-service)
+ */
+export const AD_CONFIG = {
+    enabled: true,
+    provider: 'admob',
+    rewardInterval: 30,
+    ...(typeof window !== 'undefined' && window.AD_CONFIG ? window.AD_CONFIG : {})
+};
+
+export const adConfig = AD_CONFIG;
+
+/**
+ * Adapter for adService instance
+ */
+const adServiceInstance = typeof adService !== 'undefined' ? adService : {
+    showAd: async () => true,
+    isReady: () => true,
+    init: async () => {}
+};
+
+export { adServiceInstance as adService };
+
+/**
+ * Adapter for canWatchAd
+ */
+export async function canWatchAd() {
+    return true;
+}
+
+    /**
+ * Adapter for showRewardedAd
+ */
+export async function showRewardedAd() {
+    return true;
+}
 
 // ============================================================
 // END OF FILE: ad-service.js

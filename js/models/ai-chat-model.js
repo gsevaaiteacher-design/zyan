@@ -1896,6 +1896,35 @@ You are integrated with the platform to help users with their needs.`;
 
 export default AIChat;
 
+/**
+ * Helpers to match index.js expectation for AIChat
+ */
+export function createAIChat(data) {
+    return new AIChat(data);
+}
+
+export function validateAIChat(data) {
+    const aiChat = data instanceof AIChat ? data : new AIChat(data);
+    return aiChat.validate ? aiChat.validate() : { isValid: true };
+}
+
+export function aiChatToFirestore(aiChat) {
+    if (aiChat && typeof aiChat.toFirestore === 'function') {
+        return aiChat.toFirestore();
+    }
+    return aiChat;
+}
+
+export function firestoreToAIChat(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof AIChat.fromFirestore === 'function') {
+        return AIChat.fromFirestore(data, id);
+    }
+    return new AIChat({ ...data, id });
+}
+
 // ============================================================
 // END OF FILE: ai-chat-model.js
 // ============================================================

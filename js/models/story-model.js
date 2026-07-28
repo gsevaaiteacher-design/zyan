@@ -1644,6 +1644,35 @@ export class Story {
 
 export default Story;
 
+/**
+ * Helpers to match index.js expectation for Story
+ */
+export function createStory(data) {
+    return new Story(data);
+}
+
+export function validateStory(data) {
+    const story = data instanceof Story ? data : new Story(data);
+    return story.validate ? story.validate() : { isValid: true };
+}
+
+export function storyToFirestore(story) {
+    if (story && typeof story.toFirestore === 'function') {
+        return story.toFirestore();
+    }
+    return story;
+}
+
+export function firestoreToStory(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Story.fromFirestore === 'function') {
+        return Story.fromFirestore(data, id);
+    }
+    return new Story({ ...data, id });
+}
+
 // ============================================================
 // END OF FILE: story-model.js
 // ============================================================

@@ -12,8 +12,12 @@
 // ============================================================
 
 import { ENV } from './env.js';
-import { getFirebase, isFirebaseInitialized } from './firebase-config.js';
+import { FirebaseUtils, app } from './firebase-config.js';
 
+// Aur is function ko aise define kar dein taaki ye check kar sake ki app initialize hui hai ya nahi:
+export function isFirebaseInitialized() {
+    return FirebaseUtils.isInitialized();
+}
 // ============================================================
 // APP CONFIGURATION OBJECT
 // ============================================================
@@ -609,6 +613,28 @@ try {
 } catch (error) {
     console.error('âŒ Failed to initialize app config:', error);
 }
+
+
+/**
+ * APP_ENV export for app.js
+ */
+export const APP_ENV = {
+    PRODUCTION: 'production',
+    DEVELOPMENT: 'development',
+    TEST: 'test',
+    current: 'development'
+};
+
+export const APP_NAME = 'ZYMORE';
+//export const APP_ENV = 'development'; // ya jo bhi environment ho
+
+/**
+ * appConfig export for app.js
+ */
+export const appConfig = {
+    appName: APP_NAME,
+    env: APP_ENV
+};
 
 export const getAppConfig = () => APP_CONFIG;
 

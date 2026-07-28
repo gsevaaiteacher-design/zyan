@@ -1354,3 +1354,5 @@ export function destroyCache() {
 // ============================================================
 
 export default cacheService;
+
+export { CacheService };

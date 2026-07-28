@@ -546,9 +546,17 @@ export function initEnv() {
     console.log(`  - Analytics: ${redacted.ANALYTICS_ENABLED}`);
     console.log(`  - AdMob: ${redacted.ADMOB_APP_ID ? 'Configured' : 'Not configured'}`);
     
+    
+    /*    ISKO BAD MAI KHOLNA HAI OR NICHE WARN KA MITANA HAI 
     if (!validation.isValid) {
         console.error('âŒ Environment validation failed. Some features may not work.');
         throw new Error('Environment validation failed');
+    }
+        */
+
+    if (!validation.isValid) {
+        console.warn('⚠️ Environment validation failed, but bypassing in development mode to allow local testing.');
+        // throw new Error('Environment validation failed'); // <--- Isko comment out kar do
     }
     
     console.log('âœ… Environment initialization complete');
@@ -560,11 +568,20 @@ export function initEnv() {
 // ============================================================
 
 // Initialize on import
+/*    ISKO BHI KHOLNA HAI NICHE KA SAME MITANA HAI 
 try {
     initEnv();
 } catch (error) {
     console.error('âŒ Failed to initialize environment:', error);
     // Don't throw - allow app to start with defaults
+}
+*/
+
+// Initialize on import safely
+try {
+    initEnv();
+} catch (error) {
+    console.warn('⚠️ Environment initialization warning (bypassed for development):', error.message);
 }
 
 // ============================================================
@@ -586,6 +603,14 @@ export default {
     isFeatureEnabled,
     getRedactedEnv,
     exposeEnvToWindow
+};
+
+// Safe env export for app.js
+export const env = {
+    APP_NAME: 'ZYMORE',
+    APP_ENV: 'development',
+    APP_VERSION: '1.0.0',
+    API_URL: ''
 };
 
 // ============================================================

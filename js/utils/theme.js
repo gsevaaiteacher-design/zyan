@@ -7,7 +7,7 @@
 // ============================================================
 
 import { APP_CONSTANTS } from './constants.js';
-import { eventBus } from '../state/event-bus.js';
+import EventBus from '../state/event-bus.js';
 
 /**
  * ThemeManager Class - Manages application theme (light/dark)
@@ -664,13 +664,18 @@ if (typeof document !== 'undefined') {
 }
 
 // ============================================================
-// GLOBAL EXPOSURE
+// SAFE EXPORT FIX FOR theme.js
 // ============================================================
+const themeManager = typeof ThemeManager !== 'undefined' ? ThemeManager : {
+    init: () => {},
+    setTheme: () => {},
+    toggle: () => {}
+};
+
 if (typeof window !== 'undefined') {
     window.ThemeManager = ThemeManager;
+    window.themeManager = themeManager;
 }
 
-// ============================================================
-// EXPORT
-// ============================================================
-export default ThemeManager;
+export { themeManager };
+export default themeManager;

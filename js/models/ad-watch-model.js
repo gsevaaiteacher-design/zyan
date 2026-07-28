@@ -2054,6 +2054,35 @@ export class AdWatch {
 
 export default AdWatch;
 
+/**
+ * Helpers to match index.js expectation for AdWatch
+ */
+export function createAdWatch(data) {
+    return new AdWatch(data);
+}
+
+export function validateAdWatch(data) {
+    const adWatch = data instanceof AdWatch ? data : new AdWatch(data);
+    return adWatch.validate ? adWatch.validate() : { isValid: true };
+}
+
+export function adWatchToFirestore(adWatch) {
+    if (adWatch && typeof adWatch.toFirestore === 'function') {
+        return adWatch.toFirestore();
+    }
+    return adWatch;
+}
+
+export function firestoreToAdWatch(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof AdWatch.fromFirestore === 'function') {
+        return AdWatch.fromFirestore(data, id);
+    }
+    return new AdWatch({ ...data, id });
+}
+
 // ============================================================
 // END OF FILE: ad-watch-model.js
 // ============================================================

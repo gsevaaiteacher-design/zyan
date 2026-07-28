@@ -2015,3 +2015,4 @@ export function destroySocialService() {
 // ============================================================
 
 export default socialService;
+export { SocialService };

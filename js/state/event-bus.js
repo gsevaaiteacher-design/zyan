@@ -320,8 +320,8 @@ class EventBus {
             this._listenerGroups.get(group).push(listener.id);
         }
 
-        // Handle wildcard
-        if (this._wildcardSupport && event.includes('*')) {
+        // Handle wildcard (Real Fix)
+        if (event && typeof event === 'string' && this._wildcardSupport && event.includes('*')) {
             this._registerWildcard(event, listener);
         }
 
@@ -1694,8 +1694,20 @@ export const disableDebug = () => eventBus.disableDebug();
 export const resetEventBus = () => eventBus.reset();
 export const destroyEventBus = () => eventBus.destroy();
 
+/**
+ * EVENTS constant export for store.js
+ */
+export const EVENTS = {
+    STATE_CHANGE: 'state-change',
+    ACTION_DISPATCHED: 'action-dispatched',
+    ERROR: 'error',
+    LOADED: 'loaded',
+    UPDATED: 'updated'
+};
+
 // ============================================================
 // DEFAULT EXPORT
 // ============================================================
 
 export default eventBus;
+

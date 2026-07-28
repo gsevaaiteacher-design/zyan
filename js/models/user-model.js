@@ -1383,6 +1383,74 @@ export class User {
 // ============================================================
 
 export default User;
+export { User as UserModel };
+
+// ============================================================
+// HELPER FUNCTIONS FOR AUTH SERVICE
+// ============================================================
+
+/**
+ * Firebase डेटा से User ऑब्जेक्ट बनाएं
+ * @param {Object} firebaseUser - Firebase auth user object
+ * @returns {User} User instance
+ */
+export function createUserFromFirebase(firebaseUser) {
+    return new User({
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+        displayName: firebaseUser.displayName || '',
+        photoURL: firebaseUser.photoURL || '',
+        isVerified: firebaseUser.emailVerified || false,
+        createdAt: new Date(),
+        lastLogin: new Date(),
+        isOnline: true
+    });
+}
+
+/**
+ * User ऑब्जेक्ट को Firestore में भेजने लायक फॉर्मेट में बदलें
+ * @param {User|Object} user - User instance or object
+ * @returns {Object} Plain object for Firestore
+ */
+export function userToFirestore(user) {
+    if (user instanceof User) {
+        return user.toFirestore({ includePrivate: true });
+    }
+    return user;
+}
+
+
+
+/**
+ * Create a new User instance (Helper for ModelFactory)
+ * @param {Object} data - User data
+ * @returns {User} User instance
+ */
+export function createUser(data) {
+    return new User(data);
+}
+
+/**
+ * Validate user data (Helper for ModelFactory)
+ * @param {Object} data - User data
+ * @returns {Object} Validation result
+ */
+export function validateUser(data) {
+    const user = data instanceof User ? data : new User(data);
+    return user.validate();
+}
+
+/**
+ * Convert Firestore document to User instance
+ * @param {Object} doc - Firestore document data
+ * @returns {User} User instance
+ */
+export function firestoreToUser(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.uid;
+    return User.fromFirestore(data, id);
+}
 
 // ============================================================
 // END OF FILE: user-model.js

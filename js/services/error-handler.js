@@ -1162,9 +1162,12 @@ class ErrorHandler {
 
 const errorHandler = new ErrorHandler();
 
-// ─── EXPORTS ──────────────────────────────────────────────────
-
+/**
+ * Adapter for ErrorHandler class/object
+ */
 export { errorHandler };
+export { ErrorHandler };
+
 
 // ─── HELPER FUNCTIONS ────────────────────────────────────────
 
@@ -1325,3 +1328,24 @@ export function setRetryConfig(config) {
 // ─── DEFAULT EXPORT ──────────────────────────────────────────
 
 export default errorHandler;
+
+/**
+ * Adapter for downloadError
+ */
+export function downloadError(message, options = {}) {
+    return new Error(`Download Error: ${message}`);
+}
+
+/**
+ * Adapter for notificationError
+ */
+export function notificationError(message = 'Notification error occurred', options = {}) {
+    return new Error(`Notification Error: ${message}`);
+}
+
+/**
+ * Adapter for feedError
+ */
+export function feedError(message = 'Feed error occurred', options = {}) {
+    return new Error(`Feed Error: ${message}`);
+}

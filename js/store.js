@@ -5,7 +5,7 @@
 // USED BY: All screens, widgets, app.js
 // VERSION: 4.0.0 - FULLY ADVANCED
 // ============================================================
-
+import { analytics } from './config/firebase-config.js';
 import { eventBus, EVENTS } from './state/event-bus.js';
 import { logger } from './services/logger.js';
 import { ErrorHandler } from './services/error-handler.js';
@@ -64,11 +64,17 @@ export class Store {
         this.ad = new AdService();
         this.notification = new NotificationService();
         this.cache = new CacheService();
-        this.analytics = new AnalyticsService();
+        this.analytics = analytics || { logEvent: () => {}, setUserProperties: () => {} };
         this.social = new SocialService();
         this.chat = new ChatService();
         this.ai = new AIService();
-        this.feed = new FeedService();
+        this.feed = FeedService || { 
+            getFeed: () => {}, 
+            updateFeed: () => {},
+            getTrending: () => {},
+            getRecommended: () => {}
+        };
+        
         this.location = new LocationService();
         this.errorHandler = new ErrorHandler();
         
@@ -992,6 +998,217 @@ export class Store {
     }
 
     // ============================================================
+    // ✅ ADD THIS METHOD (Line 1026 ke paas ya methods block mein)
+    // ============================================================
+    addProductToState(product) {
+        if (!product) return;
+        
+        // Add to products list
+        const currentProducts = Array.isArray(this.state.products) ? this.state.products : [];
+        const exists = currentProducts.some(p => p.id === product.id);
+        
+        if (!exists) {
+            this.setState('products', [...currentProducts, product]);
+        }
+        
+        // Also add to user's products if seller
+        if (product.sellerId === this.state.user?.uid) {
+            const userProducts = this.state.userProducts || [];
+            const existsInUser = userProducts.some(p => p.id === product.id);
+            if (!existsInUser) {
+                this.setState('userProducts', [...userProducts, product]);
+            }
+        }
+    }
+
+
+
+       // ============================================================
+       // ✅ UPDATE PRODUCT METHOD
+       // ============================================================
+       updateProductInState(product) {
+            if (!product || !product.id) return;
+    
+            // Update in products list
+            const products = Array.isArray(this.state.products) ? this.state.products : [];
+            const index = products.findIndex(p => p.id === product.id);
+    
+            if (index !== -1) {
+                products[index] = { ...products[index], ...product };
+                this.setState('products', [...products]);
+            }
+    
+            // Update in user products
+            const userProducts = Array.isArray(this.state.userProducts) ? this.state.userProducts : [];
+            const userIndex = userProducts.findIndex(p => p.id === product.id);
+    
+            if (userIndex !== -1) {
+                userProducts[userIndex] = { ...userProducts[userIndex], ...product };
+                this.setState('userProducts', [...userProducts]);
+            }
+        }
+
+
+
+    // ============================================================
+    // ✅ ADD THIS METHOD - store.js (Robust Version)
+    // ============================================================
+    addPostToState(post) {
+        if (!post || !post.id) return;
+    
+        // Convert to string to avoid type mismatch (e.g., number vs string ID)
+        const targetId = String(post.id);
+    
+        const posts = Array.isArray(this.state.posts) ? this.state.posts : [];
+        const index = posts.findIndex(p => String(p.id) === targetId);
+    
+        if (index !== -1) {
+            // Agar post pehle se exist karti hai, toh use update kar dein taaki latest data rahe
+            posts[index] = { ...posts[index], ...post };
+            this.setState('posts', [...posts]);
+        } else {
+            // Agar nayi post hai, toh top par add karein
+            this.setState('posts', [post, ...posts]);
+        }
+    }
+
+
+    // ============================================================
+    // ✅ ADD THIS METHOD - store.js (Robust Version)
+    // ============================================================
+    updateFollowState(data) {
+        if (!data || !data.followerId || !data.followingId) return;
+
+        const currentUserId = String(this.state.user?.uid || '');
+        const targetFollowingId = String(data.followingId);
+        const isFollowing = Boolean(data.isFollowing);
+
+        // Agar action current logged-in user se juda hua hai, tabhi 'following' list update karein
+        if (String(data.followerId) === currentUserId) {
+            const following = Array.isArray(this.state.following) ? this.state.following : [];
+            const hasId = following.map(String).includes(targetFollowingId);
+
+            if (isFollowing && !hasId) {
+                this.setState('following', [...following, data.followingId]);
+            } else if (!isFollowing && hasId) {
+                const filteredFollowing = following.filter(id => String(id) !== targetFollowingId);
+                this.setState('following', filteredFollowing);
+            }
+        }
+
+        // Update follower/following counts safely (bina zaroorat ke state change na ho)
+        if (data.counts) {
+            if (data.counts.followers !== undefined && this.state.followersCount !== data.counts.followers) {
+                this.setState('followersCount', Number(data.counts.followers));
+            }
+            if (data.counts.following !== undefined && this.state.followingCount !== data.counts.following) {
+                this.setState('followingCount', Number(data.counts.following));
+            }
+        }
+    }
+
+
+    // ============================================================
+    // ✅ ADD THIS METHOD - store.js (Robust Version)
+    // ============================================================
+    addChatMessage(data) {
+        if (!data) return;
+    
+        // Ensure unique message ID with string format safety
+        const messageId = String(data.id || `msg_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`);
+        const chatId = data.chatId ? String(data.chatId) : null;
+    
+        // Get current chat messages safely
+        const messages = Array.isArray(this.state.chatMessages) ? this.state.chatMessages : [];
+    
+        // Check if message already exists (using strict string comparison)
+        const exists = messages.some(m => String(m.id) === messageId);
+        if (exists) return; // Agar pehle se hai toh dobara add mat karo
+    
+        // Construct robust message object
+        const newMessage = {
+            ...data,
+            id: messageId,
+            chatId: chatId,
+            text: data.text || data.content || '',
+            type: data.type || 'text',
+            timestamp: data.timestamp || new Date().toISOString(),
+            read: Boolean(data.read),
+            delivered: Boolean(data.delivered)
+        };
+    
+        // Optional: Agar active chat ID match karti hai ya general chat list hai toh state update karein
+        if (!chatId || !this.state.activeChatId || String(this.state.activeChatId) === chatId) {
+            this.setState('chatMessages', [...messages, newMessage]);
+        }
+    }
+
+
+
+    // ============================================================
+    // ✅ ADD THIS METHOD - store.js (Robust Version)
+    // ============================================================
+    addNotification(notification) {
+        if (!notification) return;
+    
+        // Ensure unique notification ID with type safety
+        const notificationId = String(notification.id || `notif_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`);
+    
+        // Get current notifications safely
+        const notifications = Array.isArray(this.state.notifications) ? this.state.notifications : [];
+    
+        // Check if notification already exists using strict string comparison
+        const exists = notifications.some(n => String(n.id) === notificationId);
+        if (exists) return; // Agar pehle se maujood hai toh dobara add mat karo
+    
+        // Construct robust notification object
+        const newNotification = {
+            ...notification,
+            id: notificationId,
+            timestamp: notification.timestamp || new Date().toISOString(),
+            read: Boolean(notification.read) // Ensure boolean type
+        };
+    
+        // Add to the beginning of the list
+        const updatedNotifications = [newNotification, ...notifications];
+        this.setState('notifications', updatedNotifications);
+    
+        // Recalculate unread count accurately based on unread items in the array
+        const unreadCount = updatedNotifications.filter(n => !n.read).length;
+        this.setState('unreadCount', unreadCount);
+    }
+ 
+
+
+    // ============================================================
+    // ✅ ADD THIS METHOD - store.js (Robust Version)
+    // ============================================================
+    removeProductFromState(productId) {
+        if (!productId) return;
+    
+        // Convert to string to avoid type mismatch issues (e.g., number vs string ID)
+        const targetId = String(productId);
+    
+        // 1. Remove from products list efficiently
+        const products = Array.isArray(this.state.products) ? this.state.products : [];
+        const filtered = products.filter(p => String(p.id) !== targetId);
+    
+        // Only update state if something was actually removed
+        if (filtered.length !== products.length) {
+            this.setState('products', filtered);
+        }
+    
+        // 2. Remove from user products
+        const userProducts = Array.isArray(this.state.userProducts) ? this.state.userProducts : [];
+        const filteredUser = userProducts.filter(p => String(p.id) !== targetId);
+    
+        // Only update state if something was actually removed
+        if (filteredUser.length !== userProducts.length) {
+            this.setState('userProducts', filteredUser);
+        }
+    }
+
+    // ============================================================
     // EVENT LISTENERS
     // ============================================================
 
@@ -1117,6 +1334,28 @@ export class Store {
         this.resetUserData();
         this.eventBus.emit(EVENTS.USER_LOGOUT);
         logger.info('🔐 User logged out');
+    }
+
+    // ============================================================
+    // STORE.JS - Add this method
+    // ============================================================
+
+    resetUserData() {
+        // Reset all user-related state
+        this.setState('user', null);
+        this.setState('isAuthenticated', false);
+        this.setState('userProfile', null);
+        this.setState('userStats', null);
+        this.setState('userProducts', []);
+        this.setState('userLikes', []);
+        this.setState('userDownloads', []);
+    
+        // Clear localStorage
+        localStorage.removeItem('zymore_user');
+        localStorage.removeItem('zymore_token');
+        localStorage.removeItem('zymore_session');
+    
+        console.log('🔄 User data reset complete');
     }
 
     // ============================================================
@@ -1712,12 +1951,21 @@ export class Store {
         
         // Notify subscribers
         this.notifySubscribers(Object.keys(state));
-        
+
+        // Save to persistence
+        if (STORE_CONFIG.enablePersistence) {
+            this.saveState();
+        }
+
         // Process effects
         if (STORE_CONFIG.enableEffects) {
-            this.processEffects(this.state);
+            this.processEffects(this.state, Object.keys(state));
         }
+
+        this.updateCount++;
+        this.lastUpdate = Date.now();
     }
+
 
     /**
      * Clear history
@@ -2096,6 +2344,7 @@ export const setLoading = store.setLoading.bind(store);
 export const setError = store.setError.bind(store);
 export const clearError = store.clearError.bind(store);
 
+export { store };
 export default store;
 
 // ============================================================

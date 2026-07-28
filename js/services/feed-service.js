@@ -13,6 +13,14 @@ import { getCurrentUser, isAuthenticated } from './auth-service.js';
 import { cacheService } from './cache-service.js';
 import { analyticsService, trackEvent } from './analytics-service.js';
 
+/**
+ * FeedService export definition
+ */
+export const FeedService = {
+    fetch: async () => [],
+    get: async () => {}
+};
+
 // ============================================================
 // FEED CONFIGURATION
 // ============================================================
@@ -1258,3 +1266,4 @@ export function destroyFeedService() {
 // ============================================================
 
 export default feedService;
+

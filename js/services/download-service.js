@@ -1301,129 +1301,27 @@ class DownloadTask {
     }
 }
 
+/// ============================================================
+// SINGLETON INSTANCE & EXPORTS - CLEAN VERSION
 // ============================================================
-// SINGLETON INSTANCE
-// ============================================================
-
 const downloadManager = new DownloadManager();
 
-// ============================================================
-// EXPORTS
-// ============================================================
+export function initDownloadManager(options = {}) { return downloadManager.init(options); }
+export function downloadProduct(productId, options = {}) { return downloadManager.download(productId, options); }
+export function getDownloadHistory(options = {}) { return downloadManager.getHistory(options); }
+export function getDownloadStats(userId = null) { return downloadManager.getStats(userId); }
+export function pauseDownload(downloadId) { return downloadManager.pauseDownload(downloadId); }
+export function resumeDownload(downloadId) { return downloadManager.resumeDownload(downloadId); }
+export function cancelDownload(downloadId) { return downloadManager.cancelDownload(downloadId); }
+export function getActiveDownloads() { return downloadManager.getActiveDownloads(); }
+export function getDownload(downloadId) { return downloadManager.getDownload(downloadId); }
+export function getDownloadQueueStatus() { return downloadManager.getQueueStatus(); }
+export function clearDownloadQueue() { return downloadManager.clearQueue(); }
+export function onDownloadEvent(callback) { return downloadManager.addListener(callback); }
+export function canDownloadProduct(product, options = {}) { return downloadManager.canDownload(product, options); }
+export function getCoinCost(product) { return downloadManager._getCoinCost(product); }
+export function destroyDownloadManager() { return downloadManager.destroy(); }
 
-export { downloadManager, DOWNLOAD_CONFIG };
-
-// ============================================================
-// HELPER FUNCTIONS
-// ============================================================
-
-/**
- * Initialize download manager
- */
-export function initDownloadManager(options = {}) {
-    return downloadManager.init(options);
-}
-
-/**
- * Download product
- */
-export function downloadProduct(productId, options = {}) {
-    return downloadManager.download(productId, options);
-}
-
-/**
- * Get download history
- */
-export function getDownloadHistory(options = {}) {
-    return downloadManager.getHistory(options);
-}
-
-/**
- * Get download stats
- */
-export function getDownloadStats(userId = null) {
-    return downloadManager.getStats(userId);
-}
-
-/**
- * Pause download
- */
-export function pauseDownload(downloadId) {
-    return downloadManager.pauseDownload(downloadId);
-}
-
-/**
- * Resume download
- */
-export function resumeDownload(downloadId) {
-    return downloadManager.resumeDownload(downloadId);
-}
-
-/**
- * Cancel download
- */
-export function cancelDownload(downloadId) {
-    return downloadManager.cancelDownload(downloadId);
-}
-
-/**
- * Get active downloads
- */
-export function getActiveDownloads() {
-    return downloadManager.getActiveDownloads();
-}
-
-/**
- * Get download
- */
-export function getDownload(downloadId) {
-    return downloadManager.getDownload(downloadId);
-}
-
-/**
- * Get queue status
- */
-export function getDownloadQueueStatus() {
-    return downloadManager.getQueueStatus();
-}
-
-/**
- * Clear queue
- */
-export function clearDownloadQueue() {
-    return downloadManager.clearQueue();
-}
-
-/**
- * Add download listener
- */
-export function onDownloadEvent(callback) {
-    return downloadManager.addListener(callback);
-}
-
-/**
- * Check if user can download
- */
-export function canDownloadProduct(product, options = {}) {
-    return downloadManager.canDownload(product, options);
-}
-
-/**
- * Get coin cost
- */
-export function getCoinCost(product) {
-    return downloadManager._getCoinCost(product);
-}
-
-/**
- * Destroy download manager
- */
-export function destroyDownloadManager() {
-    return downloadManager.destroy();
-}
-
-// ============================================================
-// DEFAULT EXPORT
-// ============================================================
-
-export default downloadManager;
+export const downloadService = downloadManager;
+export { DownloadManager as DownloadService };
+export default downloadService;

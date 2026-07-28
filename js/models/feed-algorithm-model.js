@@ -1751,6 +1751,47 @@ export class FeedAlgorithm {
 
 export default FeedAlgorithm;
 
+
+/**
+ * Helpers to match index.js expectation for FeedAlgorithm
+ */
+export function createFeedAlgorithm(data) {
+    return new FeedAlgorithm(data);
+}
+
+export function validateFeedAlgorithm(data) {
+    const feedAlgorithm = data instanceof FeedAlgorithm ? data : new FeedAlgorithm(data);
+    return feedAlgorithm.validate ? feedAlgorithm.validate() : { isValid: true };
+}
+
+export function feedAlgorithmToFirestore(feedAlgorithm) {
+    if (feedAlgorithm && typeof feedAlgorithm.toFirestore === 'function') {
+        return feedAlgorithm.toFirestore();
+    }
+    return feedAlgorithm;
+}
+
+export function firestoreToFeedAlgorithm(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof FeedAlgorithm.fromFirestore === 'function') {
+        return FeedAlgorithm.fromFirestore(data, id);
+    }
+    return new FeedAlgorithm({ ...data, id });
+}
+
+
+/**
+ * Helper to calculate feed score matching index.js expectation
+ */
+export function calculateFeedScore(item, userContext) {
+    if (item && typeof item.calculateScore === 'function') {
+        return item.calculateScore(userContext);
+    }
+    // Fallback scoring logic agar class ke andar method na ho
+    return item?.score || 0;
+}
 // ============================================================
 // END OF FILE: feed-algorithm-model.js
 // ============================================================

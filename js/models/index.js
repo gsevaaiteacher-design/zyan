@@ -8,6 +8,24 @@
  * ============================================================
  */
 
+
+
+
+// ─── IMPORT ALL MODELS LOCALLY ──────────────────────────────
+import { User, createUser, validateUser, userToFirestore, firestoreToUser } from './user-model.js';
+import { Product, createProduct, validateProduct, productToFirestore, firestoreToProduct } from './product-model.js';
+import { Review, createReview, validateReview, reviewToFirestore, firestoreToReview } from './review-model.js';
+import { Category, createCategory, validateCategory, categoryToFirestore, firestoreToCategory } from './category-model.js';
+import { Notification, createNotification, validateNotification, notificationToFirestore, firestoreToNotification } from './notification-model.js';
+import { Post, createPost, validatePost, postToFirestore, firestoreToPost } from './post-model.js';
+import { Story, createStory, validateStory, storyToFirestore, firestoreToStory } from './story-model.js';
+import { Chat, createChat, validateChat, chatToFirestore, firestoreToChat } from './chat-model.js';
+import { AIChat, createAIChat, validateAIChat, aiChatToFirestore, firestoreToAIChat } from './ai-chat-model.js';
+import { AdWatch, createAdWatch, validateAdWatch, adWatchToFirestore, firestoreToAdWatch } from './ad-watch-model.js';
+import { Download, createDownload, validateDownload, downloadToFirestore, firestoreToDownload } from './download-model.js';
+import { FeedAlgorithm, createFeedAlgorithm, calculateFeedScore } from './feed-algorithm-model.js';
+
+//
 // ─── EXPORT ALL MODELS ──────────────────────────────────────
 
 // User Models
@@ -299,3 +317,21 @@ export default {
     ModelFactory,
     ModelRegistry
 };
+
+
+// Agar AIChat ko hi AIChatModel ke taur par export karna hai:
+export { AIChat as AIChatModel } from './ai-chat-model.js';
+export { AdWatch as AdWatchModel } from './ad-watch-model.js';
+// Database-service ke liye Model suffix wale saare aliases:
+export { User as UserModel } from './user-model.js';
+export { Product as ProductModel } from './product-model.js';
+export { Review as ReviewModel } from './review-model.js';
+export { Category as CategoryModel } from './category-model.js';
+export { Notification as NotificationModel } from './notification-model.js';
+export { Post as PostModel } from './post-model.js';
+export { Story as StoryModel } from './story-model.js';
+export { Chat as ChatModel } from './chat-model.js';
+//export { AIChat as AIChatModel } from './ai-chat-model.js';
+//export { AdWatch as AdWatchModel } from './ad-watch-model.js';
+export { Download as DownloadModel } from './download-model.js';
+export { FeedAlgorithm as FeedAlgorithmModel } from './feed-algorithm-model.js';

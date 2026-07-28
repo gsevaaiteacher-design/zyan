@@ -2061,8 +2061,9 @@ export function destroyNotifications() {
     return notificationService.destroy();
 }
 
-// ============================================================
-// DEFAULT EXPORT
+/// ============================================================
+// EXPORTS
 // ============================================================
 
 export default notificationService;
+export { NotificationService };

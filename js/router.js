@@ -851,6 +851,11 @@ class Router {
      * Normalize path
      */
     normalizePath(path) {
+        // Real Fix: Ensure path is a valid string before doing string operations
+        if (!path || typeof path !== 'string') {
+            path = '/';
+        }
+
         // Remove base path
         if (this.basePath && path.startsWith(this.basePath)) {
             path = path.slice(this.basePath.length);
@@ -1616,7 +1621,10 @@ export const destroyRouter = () => router.destroy();
 // DEFAULT EXPORT
 // ============================================================
 
+export { router };
 export default router;
+
+
 
 // ============================================================
 // END OF FILE: router.js

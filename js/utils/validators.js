@@ -1476,8 +1476,15 @@ export class Validators {
     }
 }
 
-if (typeof window !== 'undefined') {
-    window.Validators = Validators;
-}
+    // Safe validators export for app.js
+    const validators = typeof Validators !== 'undefined' ? Validators : {
+        isValidEmail: (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+        isRequired: (value) => value !== null && value !== undefined && value !== ''
+    };
 
-export default Validators;
+    if (typeof window !== 'undefined') {
+        window.validators = validators;
+    }
+
+export { validators };
+export default validators;

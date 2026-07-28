@@ -1472,6 +1472,11 @@ const aiService = new AIService();
 export { aiService };
 export default aiService;
 
+/**
+ * Adapter for AIService class/instance
+ */
+export { AIService };
+
 // ─── GLOBAL FOR DEBUGGING ────────────────────────────────────
 
 if (typeof window !== 'undefined') {

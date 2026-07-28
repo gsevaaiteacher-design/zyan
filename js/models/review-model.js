@@ -836,6 +836,36 @@ export class Review {
 
 export default Review;
 
+
+/**
+ * Helpers to match index.js expectation for Review
+ */
+export function createReview(data) {
+    return new Review(data);
+}
+
+export function validateReview(data) {
+    const review = data instanceof Review ? data : new Review(data);
+    return review.validate ? review.validate() : { isValid: true };
+}
+
+export function reviewToFirestore(review) {
+    if (review && typeof review.toFirestore === 'function') {
+        return review.toFirestore();
+    }
+    return review;
+}
+
+export function firestoreToReview(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Review.fromFirestore === 'function') {
+        return Review.fromFirestore(data, id);
+    }
+    return new Review({ ...data, id });
+}
+
 // ============================================================
 // END OF FILE: review-model.js
 // ============================================================

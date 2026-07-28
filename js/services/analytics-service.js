@@ -974,3 +974,11 @@ export function destroyAnalytics() {
 // ============================================================
 
 export default analyticsService;
+
+// ============================================================
+// 🛡️ HYBRID COMBO EXPORT (ताकि छोटा और बड़ा दोनों नाम काम करें)
+// ============================================================
+
+// 1. कैपिटल लेटर वाला नेम्ड एक्सपोर्ट (ताकि performance.js खुश रहे)
+
+export { analyticsService as AnalyticsService };

@@ -1337,3 +1337,5 @@ export function getAuthStats() {
 // ─── DEFAULT EXPORT ──────────────────────────────────────────
 
 export default authService;
+
+export { AuthService };

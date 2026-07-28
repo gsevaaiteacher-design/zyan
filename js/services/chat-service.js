@@ -1595,3 +1595,5 @@ export function destroyChatService() {
 // ============================================================
 
 export default chatService;
+
+export { ChatService };

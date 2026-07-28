@@ -2700,6 +2700,35 @@ export class Notification {
 
 export default Notification;
 
+
+/**
+ * Helpers to match index.js expectation for Notification
+ */
+export function createNotification(data) {
+    return new Notification(data);
+}
+
+export function validateNotification(data) {
+    const notification = data instanceof Notification ? data : new Notification(data);
+    return notification.validate ? notification.validate() : { isValid: true };
+}
+
+export function notificationToFirestore(notification) {
+    if (notification && typeof notification.toFirestore === 'function') {
+        return notification.toFirestore();
+    }
+    return notification;
+}
+
+export function firestoreToNotification(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Notification.fromFirestore === 'function') {
+        return Notification.fromFirestore(data, id);
+    }
+    return new Notification({ ...data, id });
+}
 // ============================================================
 // END OF FILE: notification-model.js
 // ============================================================

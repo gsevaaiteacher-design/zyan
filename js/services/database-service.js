@@ -7,9 +7,15 @@
 // ============================================================
 
 import { db } from '../config/firebase-config.js';
+//console.log('🔍 db from firebase-config:', db);
+console.log('🔍 db from firebase-config:', db);
+console.log('🔍 typeof db:', typeof db);
+console.log('🔍 database-service: db imported =', db ? 'YES' : 'NO');
 import {
+    
     collection,
     doc,
+    
     getDoc,
     getDocs,
     setDoc,
@@ -39,16 +45,8 @@ import {
     DocumentSnapshot,
     Timestamp,
     getCountFromServer,
-    whereEqual,
-    whereGreaterThan,
-    whereGreaterThanOrEqual,
-    whereLessThan,
-    whereLessThanOrEqual,
-    whereArrayContains,
-    whereArrayContainsAny,
-    whereIn,
-    whereNotIn,
-    whereNotEqual,
+    
+    
     limitToLast
 } from 'firebase/firestore';
 import { errorHandler, databaseError, networkError } from './error-handler.js';
@@ -158,11 +156,36 @@ const cache = new DatabaseCache();
 
 class DatabaseService {
     constructor() {
-        this._initialized = false;
-        this._listeners = new Map();
-        this._offlineQueue = [];
-        this._batchQueue = [];
-        this._isProcessing = false;
+    // ✅ Direct assign - imported db use karo
+    this.db = db;
+    
+    // ✅ Agar null hai toh error log karo
+    if (!this.db) {
+        console.error('❌ db is null in constructor!');
+        // Try to load
+        import('../config/firebase-config.js').then(module => {
+            this.db = module.db;
+            console.log('✅ db loaded from fallback');
+        });
+    }
+    
+    this._initialized = false;
+    this._listeners = new Map();
+    this._offlineQueue = [];
+    this._batchQueue = [];
+    this._isProcessing = false;
+}
+
+    // ✅ Async method to load db
+    async _loadDB() {
+        try {
+            const module = await import('../config/firebase-config.js');
+            this.db = module.db || module.getFirestore();
+            console.log('✅ db loaded successfully:', !!this.db);
+        } catch (error) {
+            console.error('❌ Failed to load db:', error);
+            this.db = null;
+        }
     }
 
     /**
@@ -190,7 +213,8 @@ class DatabaseService {
      */
     async _checkConnection() {
         try {
-            const testRef = doc(db, 'users', '_test_');
+            const activeDb = this.db || db;
+            const testRef = doc(activeDb, 'users', '_test_');
             await getDoc(testRef);
             return true;
         } catch (error) {
@@ -203,16 +227,25 @@ class DatabaseService {
      * Get collection reference
      */
     _getCollection(name) {
-        return collection(db, name);
+        // ✅ Fix: Use this.db instead of global db, with fallback to imported db
+        const activeDb = this.db || db;
+        if (!activeDb) {
+            throw new Error("Firestore database instance (db) is not initialized!");
+        }
+        return collection(activeDb, name);
     }
 
     /**
      * Get document reference
      */
     _getDocument(collectionName, id) {
-        return doc(db, collectionName, id);
+        // ✅ Fix: Use this.db instead of global db, with fallback to imported db
+        const activeDb = this.db || db;
+        if (!activeDb) {
+            throw new Error("Firestore database instance (db) is not initialized!");
+        }
+        return doc(activeDb, collectionName, id);
     }
-
     /**
      * Generate cache key
      */
@@ -1669,3 +1702,5 @@ export function removeAllListeners() {
 // ─── DEFAULT EXPORT ──────────────────────────────────────────
 
 export default databaseService;
+
+export { DatabaseService };

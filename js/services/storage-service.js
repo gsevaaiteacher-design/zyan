@@ -11,6 +11,48 @@ import { logger } from './logger.js';
 import { databaseService } from './database-service.js';
 import { getCurrentUser, isAuthenticated } from './auth-service.js';
 
+
+// ✅ YE CLASS DEFINITION - TOP PAR DAALO
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+
+export class StorageService {
+    constructor(storageInstance) {
+        this.storage = storageInstance;
+        console.log('✅ StorageService initialized');
+    }
+
+    // --- Firebase Storage Methods ---
+    async upload(path, file) {
+        if (!this.storage) throw new Error("Firebase Storage instance not initialized");
+        const storageRef = ref(this.storage, path);
+        const snapshot = await uploadBytes(storageRef, file);
+        return getDownloadURL(snapshot.ref);
+    }
+
+    async delete(path) {
+        if (!this.storage) throw new Error("Firebase Storage instance not initialized");
+        const storageRef = ref(this.storage, path);
+        return deleteObject(storageRef);
+    }
+
+    // --- Local Storage Methods ---
+    getLocal(key) {
+        return localStorage.getItem(key);
+    }
+
+    setLocal(key, value) {
+        localStorage.setItem(key, value);
+    }
+
+    removeLocal(key) {
+        localStorage.removeItem(key);
+    }
+
+    init() {
+        return this;
+    }
+}
+
 // ============================================================
 // AD CONFIGURATION - ZYMORE v3.0 UPDATED
 // ============================================================
@@ -1715,8 +1757,8 @@ export function destroyAdService() {
     return adService.destroy();
 }
 
-// ============================================================
-// DEFAULT EXPORT
-// ============================================================
+const storageService = new StorageService();
 
-export default adService;
+
+export { storageService };
+export default storageService;

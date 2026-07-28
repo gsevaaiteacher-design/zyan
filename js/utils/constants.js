@@ -852,6 +852,35 @@ export const STRINGS = {
 };
 
 // ============================================================
+// APP CONSTANTS (Required by theme.js)
+// ============================================================
+export const APP_CONSTANTS = {
+    COLORS,
+    STRINGS, 
+    TYPOGRAPHY,
+    SPACING,
+    BORDER_RADIUS,
+    SHADOWS,
+    BREAKPOINTS,
+    MEDIA_QUERIES,
+    ANIMATION,
+    Z_INDEX,
+    ROUTES,
+    ROUTE_NAMES,
+    STORAGE_KEYS,
+    MESSAGES,
+    CATEGORIES,
+    FILE_TYPES,
+    SORT_OPTIONS,
+    FILTER_OPTIONS,
+    PAGINATION,
+    TIMEOUTS,
+    REGEX,
+    APP_STATES
+};
+
+
+// ============================================================
 // THEME CONSTANTS
 // ============================================================
 
@@ -891,7 +920,8 @@ export default {
     PAGINATION,
     TIMEOUTS,
     REGEX,
-    APP_STATES
+    APP_STATES,
+    APP_CONSTANTS
 };
 
 // ============================================================

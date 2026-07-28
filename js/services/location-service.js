@@ -11,6 +11,7 @@ import { logger } from './logger.js';
 import { databaseService } from './database-service.js';
 import { cacheService } from './cache-service.js';
 
+
 // ============================================================
 // LOCATION CONFIGURATION
 // ============================================================
@@ -1218,4 +1219,4 @@ export function destroyLocationService() {
 // DEFAULT EXPORT
 // ============================================================
 
-export default locationService;
+export { LocationService };

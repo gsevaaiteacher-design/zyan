@@ -15,7 +15,14 @@ console.log('📦 Loading modules...');
 // ============================================================
 
 // --- Config ---
+
+import { initializeFirebase } from './config/firebase-config.js';
+// App start hone se pehle Firebase initialize karo
+const firebase = initializeFirebase();
+console.log('🔥 Firebase initialized:', firebase.db ? '✅' : '❌');
+
 import { firebaseConfig } from './config/firebase-config.js';
+
 import { appConfig, APP_VERSION, APP_NAME, APP_ENV } from './config/app-config.js';
 import { env } from './config/env.js';
 
@@ -2736,6 +2743,16 @@ window.__zymore = {
     analytics: analyticsService,
     features: app?.features || {}
 };
+
+// ============================================================
+// SAFE EXPORT FOR app.js
+// ============================================================
+if (typeof window !== 'undefined') {
+    window.App = app;
+}
+
+export { app as App };
+export default app;
 
 if (APP_ENV === 'development') {
     console.log('🔧 ZYMORE Development Tools:');

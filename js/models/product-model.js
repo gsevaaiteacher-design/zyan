@@ -2847,6 +2847,34 @@ export class Product {
 
 export default Product;
 
+
+// Product Model ke aakhir mein yeh saare exports hone zaroori hain:
+export function createProduct(data) {
+    return new Product(data);
+}
+
+export function validateProduct(data) {
+    const product = data instanceof Product ? data : new Product(data);
+    return product.validate ? product.validate() : { isValid: true };
+}
+
+export function productToFirestore(product) {
+    if (product && typeof product.toFirestore === 'function') {
+        return product.toFirestore();
+    }
+    return product;
+}
+
+export function firestoreToProduct(doc) {
+    if (!doc) return null;
+    const data = typeof doc.data === 'function' ? doc.data() : doc;
+    const id = typeof doc.id === 'string' ? doc.id : data.id;
+    if (typeof Product.fromFirestore === 'function') {
+        return Product.fromFirestore(data, id);
+    }
+    return new Product({ ...data, id });
+}
+
 // ============================================================
 // END OF FILE: product-model.js
 // ============================================================
